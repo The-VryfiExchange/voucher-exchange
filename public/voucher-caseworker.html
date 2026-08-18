@@ -862,6 +862,336 @@
       font-weight: 600;
     }
 
+    /* Mode Selector */
+    .mode-selector {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .mode-card {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .mode-card:hover {
+      border-color: var(--forest);
+      box-shadow: 0 4px 16px rgba(0,0,0,.06);
+      transform: translateY(-2px);
+    }
+
+    .mode-card:active {
+      transform: translateY(0);
+    }
+
+    .mode-card-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .mode-card-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .mode-card-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .mode-manual-link {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .mode-manual-link a {
+      color: var(--forest);
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .mode-manual-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Chat View */
+    .chat-view {
+      display: none;
+      flex-direction: column;
+      height: calc(100vh - 200px);
+      max-height: 600px;
+    }
+
+    .chat-view.active {
+      display: flex;
+    }
+
+    .chat-progress {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .chat-progress-bar {
+      flex: 1;
+      height: 4px;
+      background: var(--bg-warm);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .chat-progress-fill {
+      height: 100%;
+      background: var(--forest);
+      border-radius: 2px;
+      transition: width .4s ease;
+    }
+
+    .chat-progress-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .chat-back-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all .15s;
+    }
+
+    .chat-back-btn:hover {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-bubble {
+      max-width: 80%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 15px;
+      line-height: 1.5;
+      animation: chatFadeIn .3s ease;
+    }
+
+    @keyframes chatFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chat-bubble.system {
+      align-self: flex-start;
+      background: var(--bg-warm);
+      color: var(--text);
+      border-bottom-left-radius: 4px;
+    }
+
+    .chat-bubble.user {
+      align-self: flex-end;
+      background: var(--forest);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-self: flex-start;
+      animation: chatFadeIn .3s ease;
+    }
+
+    .chat-option-btn {
+      padding: 10px 18px;
+      border: 1px solid var(--forest);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--forest);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all .15s;
+    }
+
+    .chat-option-btn:hover {
+      background: var(--forest);
+      color: white;
+    }
+
+    /* Multi-select chips in chat */
+    .chat-multi-select {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-self: flex-start;
+      animation: chatFadeIn .3s ease;
+    }
+
+    .chat-chip {
+      padding: 8px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all .15s;
+    }
+
+    .chat-chip.selected {
+      background: var(--forest-soft);
+      border-color: var(--forest);
+      color: var(--forest);
+      font-weight: 600;
+    }
+
+    .chat-chip:hover:not(.selected) {
+      border-color: var(--forest);
+    }
+
+    .chat-multi-done {
+      padding: 8px 18px;
+      border: none;
+      border-radius: 999px;
+      background: var(--forest);
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      margin-top: 4px;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 14px;
+      font-family: var(--font-sans);
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px var(--forest-soft);
+    }
+
+    .chat-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .chat-send {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--forest);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .15s;
+    }
+
+    .chat-send:hover {
+      background: var(--forest-dark);
+    }
+
+    .chat-send svg {
+      width: 18px;
+      height: 18px;
+      fill: white;
+    }
+
+    .chat-review-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--forest);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      margin-top: 12px;
+      transition: background .15s;
+    }
+
+    .chat-review-btn:hover {
+      background: var(--forest-dark);
+    }
+
+    /* Add Household states */
+    .add-state { display: none; }
+    .add-state.active { display: block; }
+    .chat-view.active { display: flex; }
+
+    .form-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      margin-bottom: 16px;
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+    }
+
+    .form-back-link:hover {
+      color: var(--forest);
+    }
+
+    @media (max-width: 600px) {
+      .mode-selector { flex-direction: column; }
+    }
+
     /* Scrollbar */
     .main-content::-webkit-scrollbar { width: 6px; }
     .main-content::-webkit-scrollbar-track { background: transparent; }
@@ -964,165 +1294,204 @@
         <div class="form-title">Add Household</div>
         <div class="form-subtitle">Enter voucher holder information for upstream verification before matching.</div>
 
-        <form id="addHouseholdForm" onsubmit="handleSubmit(event)">
-
-          <div class="drop-zone" id="dropZone">
-            <div class="drop-zone-icon">📄</div>
-            <div class="drop-zone-text" id="dropText">Drop voucher PDF here</div>
-            <div class="drop-zone-sub" id="dropSub">or click to browse — we'll auto-fill the form</div>
-            <input type="file" accept=".pdf,application/pdf" onchange="handleFileSelect(event)">
+        <!-- STATE 1: MODE SELECTOR -->
+        <div class="add-state active" id="addModeSelect">
+          <div class="mode-selector">
+            <div class="mode-card" id="modeUpload" style="position:relative;">
+              <div class="mode-card-icon">📄</div>
+              <div class="mode-card-title">Upload Voucher</div>
+              <div class="mode-card-sub">Drop a PDF — we'll extract the data automatically</div>
+              <input type="file" accept=".pdf,application/pdf" onchange="handleFileSelect(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;">
+            </div>
+            <div class="mode-card" onclick="startChat()">
+              <div class="mode-card-icon">💬</div>
+              <div class="mode-card-title">Start a Conversation</div>
+              <div class="mode-card-sub">We'll walk you through it step by step</div>
+            </div>
           </div>
+          <div class="mode-manual-link">
+            <a onclick="showFormDirect()">or fill out the form manually</a>
+          </div>
+        </div>
+
+        <!-- STATE 2: CHAT VIEW -->
+        <div class="add-state chat-view" id="addChatView">
+          <div class="chat-progress">
+            <button class="chat-back-btn" onclick="chatGoBack()">← Back</button>
+            <div class="chat-progress-bar">
+              <div class="chat-progress-fill" id="chatProgressFill" style="width:0%"></div>
+            </div>
+            <span class="chat-progress-text" id="chatProgressText">0 / 12</span>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <!-- Chat bubbles injected here -->
+          </div>
+          <div class="chat-input-row" id="chatInputRow" style="display:none;">
+            <input class="chat-input" id="chatInput" type="text" placeholder="Type your answer...">
+            <button class="chat-send" onclick="handleChatInput()">
+              <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STATE 3: REVIEW FORM -->
+        <div class="add-state" id="addReviewForm">
+          <button class="form-back-link" onclick="showModeSelect()">← Back to start</button>
           <div class="extracted-banner" id="extractedBanner" style="display:none;">
             <span>✓</span> Voucher data extracted — review and submit below
           </div>
 
-          <!-- VOUCHER INFORMATION -->
-          <div class="form-section">
-            <div class="form-section-title">Voucher Information</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Voucher Program</label>
-                <select id="f-program" required>
-                  <option value="">Select program...</option>
-                  <option value="CityFHEPS">CityFHEPS</option>
-                  <option value="FHEPS">FHEPS</option>
-                  <option value="Section 8/HCV">Section 8/HCV</option>
-                  <option value="HASA">HASA</option>
-                  <option value="SOTA">SOTA</option>
-                  <option value="HPD">HPD</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Voucher Status</label>
-                <select id="f-voucherStatus" required>
-                  <option value="">Select status...</option>
-                  <option value="Active">Active</option>
-                  <option value="Expired">Expired</option>
-                  <option value="Pending Renewal">Pending Renewal</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Authorized Bedroom Size</label>
-                <select id="f-bedroomSize" required>
-                  <option value="">Select size...</option>
-                  <option value="Studio">Studio</option>
-                  <option value="1BR">1BR</option>
-                  <option value="2BR">2BR</option>
-                  <option value="3BR">3BR</option>
-                  <option value="4BR">4BR</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Voucher Expiration Date</label>
-                <input type="date" id="f-expirationDate">
-              </div>
-            </div>
-          </div>
+          <form id="addHouseholdForm" onsubmit="handleSubmit(event)">
 
-          <!-- HOUSEHOLD INFORMATION -->
-          <div class="form-section">
-            <div class="form-section-title">Household Information</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Head of Household Name</label>
-                <input type="text" id="f-name" placeholder="Full name" required>
+            <!-- VOUCHER INFORMATION -->
+            <div class="form-section">
+              <div class="form-section-title">Voucher Information</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Voucher Program</label>
+                  <select id="f-program" required>
+                    <option value="">Select program...</option>
+                    <option value="CityFHEPS">CityFHEPS</option>
+                    <option value="FHEPS">FHEPS</option>
+                    <option value="Section 8/HCV">Section 8/HCV</option>
+                    <option value="HASA">HASA</option>
+                    <option value="SOTA">SOTA</option>
+                    <option value="HPD">HPD</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Voucher Status</label>
+                  <select id="f-voucherStatus" required>
+                    <option value="">Select status...</option>
+                    <option value="Active">Active</option>
+                    <option value="Expired">Expired</option>
+                    <option value="Pending Renewal">Pending Renewal</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group">
-                <label>Household Members</label>
-                <input type="number" id="f-members" min="1" max="12" placeholder="Number of members" required>
-              </div>
-            </div>
-          </div>
-
-          <!-- FINANCIAL INFORMATION -->
-          <div class="form-section">
-            <div class="form-section-title">Financial Information</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Employment Status</label>
-                <select id="f-employment" required>
-                  <option value="">Select status...</option>
-                  <option value="Employed">Employed</option>
-                  <option value="Unemployed">Unemployed</option>
-                  <option value="SSI/SSDI">SSI/SSDI</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Monthly Income ($)</label>
-                <input type="number" id="f-income" min="0" step="1" placeholder="0">
-              </div>
-            </div>
-            <div class="form-row triple">
-              <div class="form-group">
-                <label>SSI/SSDI Amount ($, optional)</label>
-                <input type="number" id="f-ssi" min="0" step="1" placeholder="0">
-              </div>
-              <div class="form-group">
-                <label>Anticipated Tenant Contribution ($)</label>
-                <input type="number" id="f-tenantContribution" min="0" step="1" placeholder="0">
-              </div>
-              <div class="form-group">
-                <label>Maximum Rent ($)</label>
-                <input type="number" id="f-maxRent" min="0" step="1" placeholder="Auto or manual">
-              </div>
-            </div>
-          </div>
-
-          <!-- DOCUMENTATION -->
-          <div class="form-section">
-            <div class="form-section-title">Documentation Checklist</div>
-            <div class="checkbox-grid">
-              <label class="checkbox-item"><input type="checkbox" id="doc-id" value="Valid ID"> Valid ID</label>
-              <label class="checkbox-item"><input type="checkbox" id="doc-income" value="Proof of Income"> Proof of Income</label>
-              <label class="checkbox-item"><input type="checkbox" id="doc-voucher" value="Voucher Letter"> Voucher Letter</label>
-              <label class="checkbox-item"><input type="checkbox" id="doc-background" value="Background Check"> Background Check</label>
-              <label class="checkbox-item"><input type="checkbox" id="doc-credit" value="Credit Report"> Credit Report</label>
-              <label class="checkbox-item"><input type="checkbox" id="doc-housing" value="Housing History"> Housing History</label>
-              <label class="checkbox-item"><input type="checkbox" id="doc-approval" value="Program Approval Letter"> Program Approval Letter</label>
-            </div>
-          </div>
-
-          <!-- PREFERENCES -->
-          <div class="form-section">
-            <div class="form-section-title">Placement Preferences</div>
-            <div class="form-group" style="margin-bottom:16px;">
-              <label>Preferred Neighborhoods</label>
-              <div class="tag-select" id="neighborhoodTags">
-                <!-- Filled by JS -->
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Move-in Timeline</label>
-                <select id="f-timeline">
-                  <option value="Immediate">Immediate</option>
-                  <option value="Within 30 days">Within 30 days</option>
-                  <option value="Within 60 days">Within 60 days</option>
-                  <option value="Flexible">Flexible</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Accessibility Requirements</label>
-                <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
-                  <input type="checkbox" id="f-accessibilityCheck" style="width:16px;height:16px;accent-color:var(--forest);">
-                  <input type="text" id="f-accessibilityText" placeholder="Describe if needed" style="flex:1;">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Authorized Bedroom Size</label>
+                  <select id="f-bedroomSize" required>
+                    <option value="">Select size...</option>
+                    <option value="Studio">Studio</option>
+                    <option value="1BR">1BR</option>
+                    <option value="2BR">2BR</option>
+                    <option value="3BR">3BR</option>
+                    <option value="4BR">4BR</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Voucher Expiration Date</label>
+                  <input type="date" id="f-expirationDate">
                 </div>
               </div>
             </div>
-            <div class="form-row single">
-              <div class="form-group">
-                <label>Caseworker Notes</label>
-                <textarea id="f-notes" placeholder="Additional context, special circumstances, etc."></textarea>
+
+            <!-- HOUSEHOLD INFORMATION -->
+            <div class="form-section">
+              <div class="form-section-title">Household Information</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Head of Household Name</label>
+                  <input type="text" id="f-name" placeholder="Full name" required>
+                </div>
+                <div class="form-group">
+                  <label>Household Members</label>
+                  <input type="number" id="f-members" min="1" max="12" placeholder="Number of members" required>
+                </div>
               </div>
             </div>
-          </div>
 
-          <button type="submit" class="btn-submit">Add Household</button>
-        </form>
+            <!-- FINANCIAL INFORMATION -->
+            <div class="form-section">
+              <div class="form-section-title">Financial Information</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Employment Status</label>
+                  <select id="f-employment" required>
+                    <option value="">Select status...</option>
+                    <option value="Employed">Employed</option>
+                    <option value="Unemployed">Unemployed</option>
+                    <option value="SSI/SSDI">SSI/SSDI</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Monthly Income ($)</label>
+                  <input type="number" id="f-income" min="0" step="1" placeholder="0">
+                </div>
+              </div>
+              <div class="form-row triple">
+                <div class="form-group">
+                  <label>SSI/SSDI Amount ($, optional)</label>
+                  <input type="number" id="f-ssi" min="0" step="1" placeholder="0">
+                </div>
+                <div class="form-group">
+                  <label>Anticipated Tenant Contribution ($)</label>
+                  <input type="number" id="f-tenantContribution" min="0" step="1" placeholder="0">
+                </div>
+                <div class="form-group">
+                  <label>Maximum Rent ($)</label>
+                  <input type="number" id="f-maxRent" min="0" step="1" placeholder="Auto or manual">
+                </div>
+              </div>
+            </div>
+
+            <!-- DOCUMENTATION -->
+            <div class="form-section">
+              <div class="form-section-title">Documentation Checklist</div>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" id="doc-id" value="Valid ID"> Valid ID</label>
+                <label class="checkbox-item"><input type="checkbox" id="doc-income" value="Proof of Income"> Proof of Income</label>
+                <label class="checkbox-item"><input type="checkbox" id="doc-voucher" value="Voucher Letter"> Voucher Letter</label>
+                <label class="checkbox-item"><input type="checkbox" id="doc-background" value="Background Check"> Background Check</label>
+                <label class="checkbox-item"><input type="checkbox" id="doc-credit" value="Credit Report"> Credit Report</label>
+                <label class="checkbox-item"><input type="checkbox" id="doc-housing" value="Housing History"> Housing History</label>
+                <label class="checkbox-item"><input type="checkbox" id="doc-approval" value="Program Approval Letter"> Program Approval Letter</label>
+              </div>
+            </div>
+
+            <!-- PREFERENCES -->
+            <div class="form-section">
+              <div class="form-section-title">Placement Preferences</div>
+              <div class="form-group" style="margin-bottom:16px;">
+                <label>Preferred Neighborhoods</label>
+                <div class="tag-select" id="neighborhoodTags">
+                  <!-- Filled by JS -->
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Move-in Timeline</label>
+                  <select id="f-timeline">
+                    <option value="Immediate">Immediate</option>
+                    <option value="Within 30 days">Within 30 days</option>
+                    <option value="Within 60 days">Within 60 days</option>
+                    <option value="Flexible">Flexible</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Accessibility Requirements</label>
+                  <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
+                    <input type="checkbox" id="f-accessibilityCheck" style="width:16px;height:16px;accent-color:var(--forest);">
+                    <input type="text" id="f-accessibilityText" placeholder="Describe if needed" style="flex:1;">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row single">
+                <div class="form-group">
+                  <label>Caseworker Notes</label>
+                  <textarea id="f-notes" placeholder="Additional context, special circumstances, etc."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Add Household</button>
+          </form>
+        </div>
+
       </div>
     </div>
 
@@ -1522,46 +1891,12 @@ async function handleSubmit(e) {
 // ═══════════════════════════════════════════════
 // DRAG AND DROP PDF HANDLING
 // ═══════════════════════════════════════════════
-function initDropZone() {
-  const zone = document.getElementById('dropZone');
-  if (!zone) return;
-
-  zone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    zone.classList.add('dragover');
-  });
-
-  zone.addEventListener('dragleave', () => {
-    zone.classList.remove('dragover');
-  });
-
-  zone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    zone.classList.remove('dragover');
-    const file = e.dataTransfer.files[0];
-    if (file && file.type === 'application/pdf') {
-      processVoucherPDF(file);
-    } else {
-      showToast('Please drop a PDF file');
-    }
-  });
-}
-
 function handleFileSelect(event) {
   const file = event.target.files[0];
   if (file) processVoucherPDF(file);
 }
 
 async function processVoucherPDF(file) {
-  const zone = document.getElementById('dropZone');
-  const dropText = document.getElementById('dropText');
-  const dropSub = document.getElementById('dropSub');
-
-  // Show processing state
-  zone.classList.add('processing');
-  dropText.innerHTML = '<div class="drop-zone-spinner"></div>';
-  dropSub.textContent = 'Reading voucher...';
-
   try {
     // Convert PDF to base64
     const base64 = await fileToBase64(file);
@@ -1583,17 +1918,10 @@ async function processVoucherPDF(file) {
     // Auto-fill the form
     fillFormFromExtraction(data);
 
-    // Show success state
-    zone.classList.remove('processing');
-    zone.classList.add('success');
-    dropText.textContent = '✓ ' + file.name;
-    dropSub.textContent = 'Data extracted — review below';
-    document.getElementById('extractedBanner').style.display = 'flex';
+    // Navigate to review form
+    showReviewFromPDF();
 
   } catch (err) {
-    zone.classList.remove('processing');
-    dropText.textContent = 'Drop voucher PDF here';
-    dropSub.textContent = 'or click to browse — we\'ll auto-fill the form';
     showToast('Error: ' + err.message);
   }
 }
@@ -1681,6 +2009,378 @@ function fillFormFromExtraction(data) {
 }
 
 // ═══════════════════════════════════════════════
+// CHAT MODE
+// ═══════════════════════════════════════════════
+const CHAT_STEPS = [
+  {
+    key: 'voucher_program',
+    question: "What voucher program is this household on?",
+    type: 'options',
+    options: ['CityFHEPS', 'FHEPS', 'Section 8/HCV', 'HASA', 'SOTA', 'HPD', 'Other']
+  },
+  {
+    key: 'voucher_status',
+    question: "Is the voucher currently active?",
+    type: 'options',
+    options: ['Active', 'Expired', 'Pending Renewal']
+  },
+  {
+    key: 'authorized_bedrooms',
+    question: "What bedroom size is authorized?",
+    type: 'options',
+    options: ['Studio', '1BR', '2BR', '3BR', '4BR']
+  },
+  {
+    key: 'head_of_household',
+    question: "What's the head of household's full name?",
+    type: 'text',
+    placeholder: 'Full name'
+  },
+  {
+    key: 'household_members',
+    question: "How many people are in the household?",
+    type: 'options',
+    options: ['1', '2', '3', '4', '5', '6+']
+  },
+  {
+    key: 'employment_status',
+    question: "What's their employment status?",
+    type: 'options',
+    options: ['Employed', 'Unemployed', 'SSI/SSDI', 'Other']
+  },
+  {
+    key: 'monthly_income',
+    question: "What's the monthly income? (Enter dollar amount)",
+    type: 'text',
+    placeholder: 'e.g. 2100',
+    inputType: 'number'
+  },
+  {
+    key: 'tenant_contribution',
+    question: "What's the anticipated tenant contribution?",
+    type: 'text',
+    placeholder: 'e.g. 450',
+    inputType: 'number'
+  },
+  {
+    key: 'max_rent',
+    question: "What's the maximum rent allowed?",
+    type: 'text',
+    placeholder: 'e.g. 2217',
+    inputType: 'number'
+  },
+  {
+    key: 'documents',
+    question: "Which documents are ready? (Select all that apply, then tap Done)",
+    type: 'multi',
+    options: ['Valid ID', 'Proof of Income', 'Voucher Letter', 'Background Check', 'Credit Report', 'Housing History', 'Program Approval Letter']
+  },
+  {
+    key: 'preferred_neighborhoods',
+    question: "Any preferred neighborhoods? (Select all that apply, then tap Done)",
+    type: 'multi',
+    options: ['Upper West Side', 'Long Island City', 'Greenpoint', 'Greenwich Village', 'East Village', 'Williamsburg', 'Brooklyn Heights', 'Park Slope', 'Astoria', 'Harlem', 'Washington Heights', 'Inwood', 'South Bronx', 'Flatbush']
+  },
+  {
+    key: 'move_in_timeline',
+    question: "When can they move in?",
+    type: 'options',
+    options: ['Immediate', 'Within 30 days', 'Within 60 days', 'Flexible']
+  }
+];
+
+let chatData = {};
+let chatStep = 0;
+let chatMultiSelections = [];
+
+function showModeSelect() {
+  document.querySelectorAll('#page-add .add-state').forEach(s => s.classList.remove('active'));
+  document.getElementById('addModeSelect').classList.add('active');
+}
+
+function showFormDirect() {
+  document.querySelectorAll('#page-add .add-state').forEach(s => s.classList.remove('active'));
+  document.getElementById('addReviewForm').classList.add('active');
+  document.getElementById('extractedBanner').style.display = 'none';
+}
+
+function showReviewFromChat() {
+  document.querySelectorAll('#page-add .add-state').forEach(s => s.classList.remove('active'));
+  document.getElementById('addReviewForm').classList.add('active');
+  document.getElementById('extractedBanner').style.display = 'flex';
+  document.querySelector('#extractedBanner span').textContent = '✓';
+  document.querySelector('#extractedBanner').childNodes[2].textContent = ' Conversation complete — review and submit below';
+  fillFormFromChatData();
+}
+
+function showReviewFromPDF() {
+  document.querySelectorAll('#page-add .add-state').forEach(s => s.classList.remove('active'));
+  document.getElementById('addReviewForm').classList.add('active');
+  document.getElementById('extractedBanner').style.display = 'flex';
+}
+
+function startChat() {
+  chatData = {};
+  chatStep = 0;
+  chatMultiSelections = [];
+  document.getElementById('chatMessages').innerHTML = '';
+
+  document.querySelectorAll('#page-add .add-state').forEach(s => s.classList.remove('active'));
+  document.getElementById('addChatView').classList.add('active');
+
+  // Show welcome message
+  addChatBubble('system', "Let's add a new household. I'll ask you a few quick questions.");
+  setTimeout(() => showChatStep(0), 600);
+}
+
+function showChatStep(stepIndex) {
+  if (stepIndex >= CHAT_STEPS.length) {
+    // All done — show review button
+    addChatBubble('system', "That's everything! Let's review the information.");
+    const reviewBtn = document.createElement('button');
+    reviewBtn.className = 'chat-review-btn';
+    reviewBtn.textContent = 'Review & Submit →';
+    reviewBtn.onclick = showReviewFromChat;
+    reviewBtn.style.animation = 'chatFadeIn .3s ease';
+    document.getElementById('chatMessages').appendChild(reviewBtn);
+    document.getElementById('chatInputRow').style.display = 'none';
+    scrollChatToBottom();
+    return;
+  }
+
+  chatStep = stepIndex;
+  const step = CHAT_STEPS[stepIndex];
+  updateChatProgress(stepIndex);
+
+  // Add question bubble
+  addChatBubble('system', step.question);
+
+  if (step.type === 'options') {
+    // Show option buttons
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'chat-options';
+    optionsDiv.id = 'chatCurrentOptions';
+    step.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-option-btn';
+      btn.textContent = opt;
+      btn.onclick = () => selectChatOption(opt);
+      optionsDiv.appendChild(btn);
+    });
+    document.getElementById('chatMessages').appendChild(optionsDiv);
+    document.getElementById('chatInputRow').style.display = 'none';
+  } else if (step.type === 'multi') {
+    // Show multi-select chips
+    chatMultiSelections = [];
+    const multiDiv = document.createElement('div');
+    multiDiv.className = 'chat-multi-select';
+    multiDiv.id = 'chatCurrentOptions';
+    step.options.forEach(opt => {
+      const chip = document.createElement('button');
+      chip.className = 'chat-chip';
+      chip.textContent = opt;
+      chip.onclick = () => toggleChatChip(chip, opt);
+      multiDiv.appendChild(chip);
+    });
+    // Done button
+    const doneBtn = document.createElement('button');
+    doneBtn.className = 'chat-multi-done';
+    doneBtn.textContent = 'Done ✓';
+    doneBtn.onclick = () => confirmMultiSelect();
+    multiDiv.appendChild(doneBtn);
+    document.getElementById('chatMessages').appendChild(multiDiv);
+    document.getElementById('chatInputRow').style.display = 'none';
+  } else if (step.type === 'text') {
+    // Show text input
+    const inputRow = document.getElementById('chatInputRow');
+    const input = document.getElementById('chatInput');
+    inputRow.style.display = 'flex';
+    input.placeholder = step.placeholder || 'Type your answer...';
+    input.type = step.inputType || 'text';
+    input.value = '';
+    input.focus();
+  }
+
+  scrollChatToBottom();
+}
+
+function selectChatOption(value) {
+  const step = CHAT_STEPS[chatStep];
+  chatData[step.key] = value;
+
+  // Remove options
+  const opts = document.getElementById('chatCurrentOptions');
+  if (opts) opts.remove();
+
+  // Show user answer
+  addChatBubble('user', value);
+
+  // Next step
+  setTimeout(() => showChatStep(chatStep + 1), 400);
+}
+
+function toggleChatChip(chipEl, value) {
+  const idx = chatMultiSelections.indexOf(value);
+  if (idx > -1) {
+    chatMultiSelections.splice(idx, 1);
+    chipEl.classList.remove('selected');
+  } else {
+    chatMultiSelections.push(value);
+    chipEl.classList.add('selected');
+  }
+}
+
+function confirmMultiSelect() {
+  const step = CHAT_STEPS[chatStep];
+  chatData[step.key] = [...chatMultiSelections];
+
+  // Remove chips
+  const opts = document.getElementById('chatCurrentOptions');
+  if (opts) opts.remove();
+
+  // Show user answer
+  const display = chatMultiSelections.length > 0 ? chatMultiSelections.join(', ') : 'None selected';
+  addChatBubble('user', display);
+
+  chatMultiSelections = [];
+  setTimeout(() => showChatStep(chatStep + 1), 400);
+}
+
+function handleChatInput() {
+  const input = document.getElementById('chatInput');
+  const value = input.value.trim();
+  if (!value) return;
+
+  const step = CHAT_STEPS[chatStep];
+  chatData[step.key] = step.inputType === 'number' ? parseInt(value) || 0 : value;
+
+  // Hide input
+  document.getElementById('chatInputRow').style.display = 'none';
+
+  // Show user answer
+  const display = step.inputType === 'number' ? '$' + Number(value).toLocaleString() : value;
+  addChatBubble('user', display);
+
+  input.value = '';
+  setTimeout(() => showChatStep(chatStep + 1), 400);
+}
+
+function chatGoBack() {
+  if (chatStep <= 0) {
+    showModeSelect();
+    return;
+  }
+
+  // Remove the last question, options, and answer
+  const msgs = document.getElementById('chatMessages');
+  // Remove elements from the end until we've removed the current question's system bubble
+  let removed = 0;
+  while (msgs.lastChild && removed < 3) {
+    const last = msgs.lastChild;
+    msgs.removeChild(last);
+    removed++;
+    if (last.classList && last.classList.contains('system')) break;
+  }
+  // Also remove the current options/input if showing
+  const opts = document.getElementById('chatCurrentOptions');
+  if (opts) opts.remove();
+  document.getElementById('chatInputRow').style.display = 'none';
+
+  // Go back one step
+  delete chatData[CHAT_STEPS[chatStep].key];
+  if (chatStep > 0) {
+    chatStep--;
+    delete chatData[CHAT_STEPS[chatStep].key];
+  }
+  showChatStep(chatStep);
+}
+
+function addChatBubble(type, text) {
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble ' + type;
+  bubble.textContent = text;
+  document.getElementById('chatMessages').appendChild(bubble);
+  scrollChatToBottom();
+}
+
+function updateChatProgress(step) {
+  const total = CHAT_STEPS.length;
+  const pct = Math.round((step / total) * 100);
+  document.getElementById('chatProgressFill').style.width = pct + '%';
+  document.getElementById('chatProgressText').textContent = step + ' / ' + total;
+}
+
+function scrollChatToBottom() {
+  const msgs = document.getElementById('chatMessages');
+  setTimeout(() => { msgs.scrollTop = msgs.scrollHeight; }, 50);
+}
+
+function fillFormFromChatData() {
+  // Map chatData keys to form field IDs
+  if (chatData.voucher_program) {
+    const el = document.getElementById('f-program');
+    if (el) el.value = chatData.voucher_program;
+  }
+  if (chatData.voucher_status) {
+    const el = document.getElementById('f-voucherStatus');
+    if (el) el.value = chatData.voucher_status;
+  }
+  if (chatData.authorized_bedrooms) {
+    const el = document.getElementById('f-bedroomSize');
+    if (el) el.value = chatData.authorized_bedrooms;
+  }
+  if (chatData.head_of_household) {
+    const el = document.getElementById('f-name');
+    if (el) el.value = chatData.head_of_household;
+  }
+  if (chatData.household_members) {
+    const el = document.getElementById('f-members');
+    if (el) el.value = chatData.household_members === '6+' ? 6 : chatData.household_members;
+  }
+  if (chatData.employment_status) {
+    const el = document.getElementById('f-employment');
+    if (el) el.value = chatData.employment_status;
+  }
+  if (chatData.monthly_income !== undefined) {
+    const el = document.getElementById('f-income');
+    if (el) el.value = chatData.monthly_income;
+  }
+  if (chatData.tenant_contribution !== undefined) {
+    const el = document.getElementById('f-tenantContribution');
+    if (el) el.value = chatData.tenant_contribution;
+  }
+  if (chatData.max_rent !== undefined) {
+    const el = document.getElementById('f-maxRent');
+    if (el) el.value = chatData.max_rent;
+  }
+  if (chatData.documents && chatData.documents.length > 0) {
+    // Check the document checkboxes
+    const docMap = {
+      'Valid ID': 'doc-id',
+      'Proof of Income': 'doc-income',
+      'Voucher Letter': 'doc-voucher',
+      'Background Check': 'doc-background',
+      'Credit Report': 'doc-credit',
+      'Housing History': 'doc-housing',
+      'Program Approval Letter': 'doc-approval'
+    };
+    chatData.documents.forEach(doc => {
+      const id = docMap[doc];
+      if (id) document.getElementById(id).checked = true;
+    });
+  }
+  if (chatData.preferred_neighborhoods && chatData.preferred_neighborhoods.length > 0) {
+    // Select neighborhood tags
+    selectedNeighborhoods = [...chatData.preferred_neighborhoods];
+    renderNeighborhoodTags();
+  }
+  if (chatData.move_in_timeline) {
+    const el = document.getElementById('f-timeline');
+    if (el) el.value = chatData.move_in_timeline;
+  }
+}
+
+// ═══════════════════════════════════════════════
 // PAGE SWITCHING
 // ═══════════════════════════════════════════════
 function switchPage(page) {
@@ -1702,6 +2402,7 @@ function switchPage(page) {
   // Refresh data
   if (page === 'dashboard') renderDashboard();
   if (page === 'households') renderHouseholds();
+  if (page === 'add') showModeSelect();
 
   // Scroll to top
   document.querySelector('.main-content').scrollTop = 0;
@@ -1720,7 +2421,34 @@ function switchPage(page) {
   await renderDashboard();
   await renderHouseholds();
   renderNeighborhoodTags();
-  initDropZone();
+
+  // Chat input Enter key
+  document.getElementById('chatInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleChatInput();
+  });
+
+  // Make the upload card handle drag and drop
+  const uploadCard = document.getElementById('modeUpload');
+  if (uploadCard) {
+    uploadCard.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadCard.style.borderColor = 'var(--forest)';
+      uploadCard.style.background = 'var(--forest-soft)';
+    });
+    uploadCard.addEventListener('dragleave', () => {
+      uploadCard.style.borderColor = '';
+      uploadCard.style.background = '';
+    });
+    uploadCard.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadCard.style.borderColor = '';
+      uploadCard.style.background = '';
+      const file = e.dataTransfer.files[0];
+      if (file && file.type === 'application/pdf') {
+        processVoucherPDF(file);
+      }
+    });
+  }
 })();
 </script>
 

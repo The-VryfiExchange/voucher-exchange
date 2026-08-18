@@ -1326,7 +1326,7 @@
           <div class="chat-messages" id="chatMessages">
             <!-- Chat bubbles injected here -->
           </div>
-          <div class="chat-input-row" id="chatInputRow" style="display:none;">
+          <div class="chat-input-row" id="chatInputRow">
             <input class="chat-input" id="chatInput" type="text" placeholder="Type your answer...">
             <button class="chat-send" onclick="handleChatInput()">
               <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
@@ -2143,7 +2143,7 @@ function showChatStep(stepIndex) {
     reviewBtn.onclick = showReviewFromChat;
     reviewBtn.style.animation = 'chatFadeIn .3s ease';
     document.getElementById('chatMessages').appendChild(reviewBtn);
-    document.getElementById('chatInputRow').style.display = 'none';
+    // input row stays visible
     scrollChatToBottom();
     return;
   }
@@ -2168,7 +2168,7 @@ function showChatStep(stepIndex) {
       optionsDiv.appendChild(btn);
     });
     document.getElementById('chatMessages').appendChild(optionsDiv);
-    document.getElementById('chatInputRow').style.display = 'none';
+    // input row stays visible
   } else if (step.type === 'multi') {
     // Show multi-select chips
     chatMultiSelections = [];
@@ -2189,7 +2189,7 @@ function showChatStep(stepIndex) {
     doneBtn.onclick = () => confirmMultiSelect();
     multiDiv.appendChild(doneBtn);
     document.getElementById('chatMessages').appendChild(multiDiv);
-    document.getElementById('chatInputRow').style.display = 'none';
+    // input row stays visible
   } else if (step.type === 'text') {
     // Show text input
     const inputRow = document.getElementById('chatInputRow');
@@ -2252,14 +2252,28 @@ function handleChatInput() {
   if (!value) return;
 
   const step = CHAT_STEPS[chatStep];
-  chatData[step.key] = step.inputType === 'number' ? parseInt(value) || 0 : value;
 
-  // Hide input
-  document.getElementById('chatInputRow').style.display = 'none';
-
-  // Show user answer
-  const display = step.inputType === 'number' ? '$' + Number(value).toLocaleString() : value;
-  addChatBubble('user', display);
+  // For option-type steps, typed input works as a direct answer too
+  if (step.type === 'options') {
+    // Try to match typed value to an option (case-insensitive)
+    const match = step.options.find(o => o.toLowerCase() === value.toLowerCase());
+    chatData[step.key] = match || value;
+    // Remove option buttons
+    const opts = document.getElementById('chatCurrentOptions');
+    if (opts) opts.remove();
+    addChatBubble('user', match || value);
+  } else if (step.type === 'multi') {
+    // For multi-select, treat typed input as a single selection
+    chatData[step.key] = [value];
+    const opts = document.getElementById('chatCurrentOptions');
+    if (opts) opts.remove();
+    addChatBubble('user', value);
+  } else {
+    // Text input
+    chatData[step.key] = step.inputType === 'number' ? parseInt(value) || 0 : value;
+    const display = step.inputType === 'number' ? '$' + Number(value).toLocaleString() : value;
+    addChatBubble('user', display);
+  }
 
   input.value = '';
   setTimeout(() => showChatStep(chatStep + 1), 400);

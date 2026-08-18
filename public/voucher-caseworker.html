@@ -781,6 +781,87 @@
     .mobile-nav button .mob-label { display: none; }
     .mobile-nav button.active .mob-label { display: inline; }
 
+    /* Drag & Drop Zone */
+    .drop-zone {
+      border: 2px dashed var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      margin-bottom: 28px;
+      background: var(--card);
+      position: relative;
+    }
+
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: var(--forest);
+      background: var(--forest-soft);
+    }
+
+    .drop-zone.processing {
+      border-color: var(--amber);
+      background: var(--amber-soft);
+      pointer-events: none;
+    }
+
+    .drop-zone.success {
+      border-color: var(--forest);
+      background: var(--green-soft);
+    }
+
+    .drop-zone-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+
+    .drop-zone-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .drop-zone-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .drop-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .drop-zone-spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--border);
+      border-top-color: var(--forest);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .extracted-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--green-soft);
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--forest);
+      font-weight: 600;
+    }
+
     /* Scrollbar */
     .main-content::-webkit-scrollbar { width: 6px; }
     .main-content::-webkit-scrollbar-track { background: transparent; }
@@ -884,6 +965,16 @@
         <div class="form-subtitle">Enter voucher holder information for upstream verification before matching.</div>
 
         <form id="addHouseholdForm" onsubmit="handleSubmit(event)">
+
+          <div class="drop-zone" id="dropZone">
+            <div class="drop-zone-icon">📄</div>
+            <div class="drop-zone-text" id="dropText">Drop voucher PDF here</div>
+            <div class="drop-zone-sub" id="dropSub">or click to browse — we'll auto-fill the form</div>
+            <input type="file" accept=".pdf,application/pdf" onchange="handleFileSelect(event)">
+          </div>
+          <div class="extracted-banner" id="extractedBanner" style="display:none;">
+            <span>✓</span> Voucher data extracted — review and submit below
+          </div>
 
           <!-- VOUCHER INFORMATION -->
           <div class="form-section">
@@ -1429,6 +1520,167 @@ async function handleSubmit(e) {
 }
 
 // ═══════════════════════════════════════════════
+// DRAG AND DROP PDF HANDLING
+// ═══════════════════════════════════════════════
+function initDropZone() {
+  const zone = document.getElementById('dropZone');
+  if (!zone) return;
+
+  zone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    zone.classList.add('dragover');
+  });
+
+  zone.addEventListener('dragleave', () => {
+    zone.classList.remove('dragover');
+  });
+
+  zone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') {
+      processVoucherPDF(file);
+    } else {
+      showToast('Please drop a PDF file');
+    }
+  });
+}
+
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  if (file) processVoucherPDF(file);
+}
+
+async function processVoucherPDF(file) {
+  const zone = document.getElementById('dropZone');
+  const dropText = document.getElementById('dropText');
+  const dropSub = document.getElementById('dropSub');
+
+  // Show processing state
+  zone.classList.add('processing');
+  dropText.innerHTML = '<div class="drop-zone-spinner"></div>';
+  dropSub.textContent = 'Reading voucher...';
+
+  try {
+    // Convert PDF to base64
+    const base64 = await fileToBase64(file);
+
+    // Send to extraction API
+    const response = await fetch('/api/extract-voucher', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pdf: base64 })
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.error || 'Extraction failed');
+    }
+
+    const data = await response.json();
+
+    // Auto-fill the form
+    fillFormFromExtraction(data);
+
+    // Show success state
+    zone.classList.remove('processing');
+    zone.classList.add('success');
+    dropText.textContent = '✓ ' + file.name;
+    dropSub.textContent = 'Data extracted — review below';
+    document.getElementById('extractedBanner').style.display = 'flex';
+
+  } catch (err) {
+    zone.classList.remove('processing');
+    dropText.textContent = 'Drop voucher PDF here';
+    dropSub.textContent = 'or click to browse — we\'ll auto-fill the form';
+    showToast('Error: ' + err.message);
+  }
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // Remove the data:application/pdf;base64, prefix
+      const base64 = reader.result.split(',')[1];
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function fillFormFromExtraction(data) {
+  if (data.voucher_program) {
+    const programEl = document.getElementById('f-program');
+    if (programEl) {
+      const options = Array.from(programEl.options);
+      const match = options.find(o =>
+        o.value.toLowerCase().includes(data.voucher_program.toLowerCase()) ||
+        data.voucher_program.toLowerCase().includes(o.value.toLowerCase())
+      );
+      if (match) programEl.value = match.value;
+    }
+  }
+
+  if (data.voucher_status) {
+    const statusEl = document.getElementById('f-voucherStatus');
+    if (statusEl) statusEl.value = data.voucher_status;
+  }
+
+  if (data.authorized_bedrooms) {
+    const bedroomEl = document.getElementById('f-bedroomSize');
+    if (bedroomEl) bedroomEl.value = data.authorized_bedrooms;
+  }
+
+  if (data.voucher_expiration) {
+    const expEl = document.getElementById('f-expirationDate');
+    if (expEl) expEl.value = data.voucher_expiration;
+  }
+
+  if (data.head_of_household) {
+    const nameEl = document.getElementById('f-name');
+    if (nameEl) nameEl.value = data.head_of_household;
+  }
+
+  if (data.household_members) {
+    const membersEl = document.getElementById('f-members');
+    if (membersEl) membersEl.value = data.household_members;
+  }
+
+  if (data.monthly_income) {
+    const incomeEl = document.getElementById('f-income');
+    if (incomeEl) incomeEl.value = data.monthly_income;
+  }
+
+  if (data.ssi_ssdi_amount) {
+    const ssiEl = document.getElementById('f-ssi');
+    if (ssiEl) ssiEl.value = data.ssi_ssdi_amount;
+  }
+
+  if (data.tenant_contribution) {
+    const contribEl = document.getElementById('f-tenantContribution');
+    if (contribEl) contribEl.value = data.tenant_contribution;
+  }
+
+  if (data.max_rent) {
+    const rentEl = document.getElementById('f-maxRent');
+    if (rentEl) rentEl.value = data.max_rent;
+  }
+
+  if (data.employment_status) {
+    const empEl = document.getElementById('f-employment');
+    if (empEl) empEl.value = data.employment_status;
+  }
+
+  if (data.notes) {
+    const notesEl = document.getElementById('f-notes');
+    if (notesEl) notesEl.value = data.notes;
+  }
+}
+
+// ═══════════════════════════════════════════════
 // PAGE SWITCHING
 // ═══════════════════════════════════════════════
 function switchPage(page) {
@@ -1468,6 +1720,7 @@ function switchPage(page) {
   await renderDashboard();
   await renderHouseholds();
   renderNeighborhoodTags();
+  initDropZone();
 })();
 </script>
 

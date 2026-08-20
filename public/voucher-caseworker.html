@@ -414,44 +414,177 @@
       color: var(--text-muted);
     }
 
-    /* EXPANDED ROW */
-    .expanded-row {
-      display: none;
+    /* HOUSEHOLD DETAIL PAGE */
+    .hh-detail-header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
     }
 
-    .expanded-row.active {
-      display: table-row;
-    }
-
-    .expanded-row td {
-      background: var(--bg);
-      padding: 20px 24px;
-    }
-
-    .expanded-detail-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-    }
-
-    .detail-group {
-      margin-bottom: 12px;
-    }
-
-    .detail-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+    .hh-detail-name {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: var(--text);
       margin-bottom: 4px;
     }
 
-    .detail-value {
+    .hh-detail-sub {
       font-size: 14px;
-      color: var(--text);
-      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
     }
+
+    .hh-detail-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .hh-detail-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .hh-detail-two-col { grid-template-columns: 1fr; }
+    }
+
+    .hh-detail-flags {
+      background: var(--amber-soft);
+      border: 1px solid rgba(196,131,10,.2);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hh-detail-flags .detail-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .row-chevron {
+      color: var(--text-muted);
+      font-size: 18px;
+      text-align: right;
+    }
+
+    .detail-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+
+    .detail-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px 20px;
+    }
+
+    .detail-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .detail-stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 2px;
+    }
+
+    .detail-stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .detail-stat-value.money {
+      color: var(--forest);
+    }
+
+    .detail-stat-value.alert {
+      color: var(--coral);
+    }
+
+    .detail-inline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .detail-notes-box {
+      background: var(--bg-warm);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .detail-flags-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 0;
+    }
+
+    .detail-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .detail-flag.warning {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .detail-flag.success {
+      background: var(--green-soft);
+      color: var(--forest);
+    }
+
+    /* Keep old classes for compatibility */
+    .detail-group { margin-bottom: 12px; }
+    .detail-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;
+    }
+    .detail-value { font-size: 14px; color: var(--text); font-weight: 500; }
 
     .doc-list {
       display: flex;
@@ -728,7 +861,6 @@
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .summary-grid { grid-template-columns: repeat(2, 1fr); }
-      .expanded-detail-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -737,7 +869,6 @@
       .summary-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .form-row.triple { grid-template-columns: 1fr; }
-      .expanded-detail-grid { grid-template-columns: 1fr; }
       .checkbox-grid { grid-template-columns: 1fr; }
 
       /* Mobile nav */
@@ -1192,6 +1323,220 @@
       .mode-selector { flex-direction: column; }
     }
 
+    /* Pipeline Cards */
+    .cw-pipeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: box-shadow .15s;
+    }
+
+    .cw-pipeline-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    }
+
+    .cw-pipeline-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .cw-pipeline-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .cw-pipeline-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .cw-pipeline-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Stage Progress */
+    .cw-stage-progress {
+      margin-bottom: 20px;
+    }
+
+    .cw-stage-bar {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 8px;
+    }
+
+    .cw-stage-segment {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--bg-warm);
+    }
+
+    .cw-stage-segment.completed {
+      background: var(--forest);
+    }
+
+    .cw-stage-segment.current {
+      background: var(--amber);
+    }
+
+    .cw-stage-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--forest);
+    }
+
+    .cw-stage-label .stage-index {
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    /* Closing Checklist */
+    .cw-checklist {
+      margin-bottom: 20px;
+    }
+
+    .cw-checklist-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .cw-checklist-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .cw-checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .cw-checklist-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--forest);
+      cursor: pointer;
+    }
+
+    .cw-checklist-item.disabled input[type="checkbox"] {
+      pointer-events: none;
+      opacity: .5;
+    }
+
+    /* Pipeline Notes */
+    .cw-pipeline-notes {
+      margin-bottom: 20px;
+    }
+
+    .cw-pipeline-notes textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: var(--font-sans);
+      color: var(--text);
+      background: white;
+      outline: none;
+      resize: vertical;
+      min-height: 60px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .cw-pipeline-notes textarea:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px var(--forest-soft);
+    }
+
+    .cw-pipeline-notes .notes-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+
+    .cw-pipeline-notes .btn-save-note {
+      padding: 6px 16px;
+      background: var(--forest);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: background .15s;
+    }
+
+    .cw-pipeline-notes .btn-save-note:hover {
+      background: var(--forest-dark);
+    }
+
+    /* Activity Timeline */
+    .cw-timeline {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .cw-timeline-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .cw-timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+
+    .cw-timeline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--forest);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .cw-timeline-text {
+      flex: 1;
+      color: var(--text);
+    }
+
+    .cw-timeline-time {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .cw-checklist-items { grid-template-columns: 1fr; }
+    }
+
     /* Scrollbar */
     .main-content::-webkit-scrollbar { width: 6px; }
     .main-content::-webkit-scrollbar-track { background: transparent; }
@@ -1234,6 +1579,10 @@
     <button class="sidebar-item" data-page="add" onclick="switchPage('add')">
       <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
       Add Household
+    </button>
+    <button class="sidebar-item" data-page="pipeline" onclick="switchPage('pipeline')">
+      <svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg>
+      Pipeline
     </button>
     <div class="sidebar-divider"></div>
     <div class="sidebar-label">Links</div>
@@ -1280,6 +1629,7 @@
             <th>Readiness</th>
             <th>Docs</th>
             <th>Stage</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="householdsBody">
@@ -1321,7 +1671,7 @@
             <div class="chat-progress-bar">
               <div class="chat-progress-fill" id="chatProgressFill" style="width:0%"></div>
             </div>
-            <span class="chat-progress-text" id="chatProgressText">0 / 12</span>
+            <span class="chat-progress-text" id="chatProgressText">0 / 15</span>
           </div>
           <div class="chat-messages" id="chatMessages">
             <!-- Chat bubbles injected here -->
@@ -1488,11 +1838,81 @@
               </div>
             </div>
 
+            <!-- APARTMENT CRITERIA -->
+            <div class="form-section">
+              <div class="form-section-title">Apartment Criteria</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Elevator Required</label>
+                  <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
+                    <input type="checkbox" id="f-elevator" style="width:16px;height:16px;accent-color:var(--forest);">
+                    <span style="font-size:13px;color:var(--text-secondary);">Household needs elevator building</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Floor Preference</label>
+                  <select id="f-floorPref">
+                    <option value="">Any floor</option>
+                    <option value="Ground floor">Ground floor</option>
+                    <option value="Low floor (1-3)">Low floor (1-3)</option>
+                    <option value="Any floor">Any floor</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Pets</label>
+                  <select id="f-pets">
+                    <option value="None">None</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Voucher Payment Standard ($)</label>
+                  <input type="number" id="f-paymentStandard" min="0" step="1" placeholder="Max program will pay">
+                </div>
+              </div>
+            </div>
+
+            <!-- READINESS FLAGS -->
+            <div class="form-section">
+              <div class="form-section-title">Readiness Flags</div>
+              <div class="form-subtitle" style="margin-bottom:12px;font-size:13px;color:var(--text-muted);">Any issues that could prevent or delay closing? Select all that apply.</div>
+              <div class="checkbox-grid" id="readinessFlagsGrid">
+                <label class="checkbox-item"><input type="checkbox" value="Pending background check"> Pending background check</label>
+                <label class="checkbox-item"><input type="checkbox" value="Income recalculation needed"> Income recalculation needed</label>
+                <label class="checkbox-item"><input type="checkbox" value="Missing documentation"> Missing documentation</label>
+                <label class="checkbox-item"><input type="checkbox" value="Voucher expiring soon"> Voucher expiring soon</label>
+                <label class="checkbox-item"><input type="checkbox" value="Household composition change"> Household composition change</label>
+                <label class="checkbox-item"><input type="checkbox" value="Prior landlord reference pending"> Prior landlord reference pending</label>
+                <label class="checkbox-item"><input type="checkbox" value="Credit issues"> Credit issues</label>
+                <label class="checkbox-item"><input type="checkbox" value="Caseworker availability"> Caseworker availability</label>
+              </div>
+            </div>
+
             <button type="submit" class="btn-submit">Add Household</button>
           </form>
         </div>
 
       </div>
+    </div>
+
+    <!-- PIPELINE -->
+    <div class="page-view" id="page-pipeline">
+      <div class="section-bar">Pipeline</div>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">Track your households through the closing process.</p>
+      <div id="cwPipelineCards"></div>
+      <div id="cwPipelineEmpty" style="display:none;text-align:center;padding:40px;color:var(--text-muted);font-size:14px;">
+        No active pipeline entries for your households.
+      </div>
+    </div>
+
+    <!-- HOUSEHOLD DETAIL -->
+    <div class="page-view" id="page-household-detail">
+      <button class="form-back-link" onclick="switchPage('households')">&larr; Back to Households</button>
+      <div id="householdDetailContent"></div>
     </div>
 
   </div><!-- /main-content -->
@@ -1511,6 +1931,10 @@
   <button data-page="add" onclick="switchPage('add')">
     <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
     <span class="mob-label">Add</span>
+  </button>
+  <button data-page="pipeline" onclick="switchPage('pipeline')">
+    <svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg>
+    <span class="mob-label">Pipeline</span>
   </button>
 </div>
 
@@ -1671,11 +2095,10 @@ async function renderHouseholds() {
   households.forEach((hh, idx) => {
     const readiness = getReadiness(hh);
     const docs = hh.documents || [];
-    const neighborhoods = hh.preferred_neighborhoods || [];
     const members = hh.household_members || 1;
 
     html += `
-      <tr onclick="toggleExpand(${idx})">
+      <tr onclick="openHousehold('${hh.id}')">
         <td>
           <div class="hh-name">${hh.head_of_household}</div>
           <div class="hh-sub">${members} member${members > 1 ? 's' : ''}</div>
@@ -1686,60 +2109,7 @@ async function renderHouseholds() {
         <td><span class="status-badge ${getStageBadgeClass(readiness)}">${readiness.toUpperCase()}</span></td>
         <td><span class="status-badge ${getDocsBadgeClass(hh)}">${getDocsStatus(hh)}</span></td>
         <td><span class="status-badge ${getStageBadgeClass(hh.stage)}">${hh.stage.toUpperCase()}</span></td>
-      </tr>
-      <tr class="expanded-row" id="expand-${idx}">
-        <td colspan="7">
-          <div class="expanded-detail-grid">
-            <div>
-              <div class="detail-group">
-                <div class="detail-label">Monthly Income</div>
-                <div class="detail-value">${formatCurrency(hh.monthly_income)}</div>
-              </div>
-              <div class="detail-group">
-                <div class="detail-label">SSI/SSDI</div>
-                <div class="detail-value">${hh.ssi_ssdi_amount ? formatCurrency(hh.ssi_ssdi_amount) : 'N/A'}</div>
-              </div>
-              <div class="detail-group">
-                <div class="detail-label">Tenant Contribution</div>
-                <div class="detail-value">${formatCurrency(hh.tenant_contribution)}</div>
-              </div>
-              <div class="detail-group">
-                <div class="detail-label">Max Rent</div>
-                <div class="detail-value">${formatCurrency(hh.max_rent)}</div>
-              </div>
-            </div>
-            <div>
-              <div class="detail-group">
-                <div class="detail-label">Employment</div>
-                <div class="detail-value">${hh.employment_status}</div>
-              </div>
-              <div class="detail-group">
-                <div class="detail-label">Move-in Timeline</div>
-                <div class="detail-value">${hh.move_in_timeline}</div>
-              </div>
-              <div class="detail-group">
-                <div class="detail-label">Voucher Expires</div>
-                <div class="detail-value">${hh.voucher_expiration || 'N/A'}</div>
-              </div>
-              ${hh.accessibility_needed ? `<div class="detail-group"><div class="detail-label">Accessibility</div><div class="detail-value">${hh.accessibility_notes}</div></div>` : ''}
-            </div>
-            <div>
-              <div class="detail-group">
-                <div class="detail-label">Documentation</div>
-                <div class="doc-list">
-                  ${ALL_DOCS.map(d => `<span class="doc-tag ${docs.includes(d) ? 'complete' : 'missing'}" onclick="event.stopPropagation();toggleDoc('${hh.id}','${d}',this)">${d}</span>`).join('')}
-                </div>
-              </div>
-              <div class="detail-group" style="margin-top:12px;">
-                <div class="detail-label">Preferred Neighborhoods</div>
-                <div class="neighborhoods-list">
-                  ${neighborhoods.map(n => `<span class="neighborhood-tag">${n}</span>`).join('')}
-                </div>
-              </div>
-              ${hh.notes ? `<div class="detail-group" style="margin-top:12px;"><div class="detail-label">Notes</div><div class="detail-value" style="font-size:13px;color:var(--text-secondary);">${hh.notes}</div></div>` : ''}
-            </div>
-          </div>
-        </td>
+        <td class="row-chevron">&rsaquo;</td>
       </tr>
     `;
   });
@@ -1747,29 +2117,121 @@ async function renderHouseholds() {
   tbody.innerHTML = html;
 }
 
-function toggleExpand(idx) {
-  const row = document.getElementById('expand-' + idx);
-  row.classList.toggle('active');
+async function openHousehold(id) {
+  const { data: hh, error } = await supabase
+    .from('households')
+    .select('*')
+    .eq('id', id)
+    .single();
+  if (error || !hh) {
+    showToast('Error loading household');
+    return;
+  }
+  // Switch to the household detail page
+  document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-household-detail').classList.add('active');
+  // Keep sidebar highlighting on households
+  document.querySelectorAll('.sidebar-item[data-page]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.page === 'households');
+  });
+  document.querySelectorAll('.mobile-nav button[data-page]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.page === 'households');
+  });
+  document.querySelector('.main-content').scrollTop = 0;
+  renderHouseholdDetail(hh);
+}
+
+function renderHouseholdDetail(hh) {
+  const docs = hh.documents || [];
+  const neighborhoods = hh.preferred_neighborhoods || [];
+  const members = hh.household_members || 1;
+  const readiness = getReadiness(hh);
+  const readinessFlags = hh.readiness_flags || [];
+
+  let html = '';
+
+  // Header card
+  html += `<div class="hh-detail-header">`;
+  html += `<div class="hh-detail-name">${hh.head_of_household}</div>`;
+  html += `<div class="hh-detail-sub">`;
+  html += `<span class="program-badge">${hh.voucher_program}</span> `;
+  html += `<span style="margin-left:6px;">${hh.authorized_bedrooms}</span> `;
+  html += `<span class="status-badge ${getVoucherBadgeClass(hh.voucher_status)}" style="margin-left:6px;">${hh.voucher_status.toUpperCase()}</span>`;
+  html += `</div>`;
+  html += `<div class="hh-detail-meta">${members} member${members > 1 ? 's' : ''} &middot; ${readiness === 'Ready' ? 'Ready for placement' : readiness === 'Matched' ? 'Matched with landlord' : 'Not yet ready'}</div>`;
+  html += `<span class="status-badge ${getStageBadgeClass(readiness)}">${readiness.toUpperCase()} ${readiness === 'Ready' ? '\u2713' : ''}</span>`;
+  html += `</div>`;
+
+  // Readiness flags
+  if (readinessFlags.length > 0) {
+    html += `<div class="hh-detail-flags">`;
+    readinessFlags.forEach(f => {
+      html += `<span class="detail-flag">\u26A0 ${f}</span>`;
+    });
+    html += `</div>`;
+  }
+
+  // Two-column: Financials + Apartment Needs
+  html += `<div class="hh-detail-two-col">`;
+
+  // Financials
+  html += `<div class="detail-section">`;
+  html += `<div class="detail-section-title">Financials</div>`;
+  html += `<div class="detail-grid">`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Income</span><span class="detail-stat-value money">${formatCurrency(hh.monthly_income)}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">SSI/SSDI</span><span class="detail-stat-value money">${hh.ssi_ssdi_amount ? formatCurrency(hh.ssi_ssdi_amount) : '--'}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Contribution</span><span class="detail-stat-value">${formatCurrency(hh.tenant_contribution)}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Max Rent</span><span class="detail-stat-value money">${formatCurrency(hh.max_rent)}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Payment Std</span><span class="detail-stat-value">${hh.voucher_payment_standard ? formatCurrency(hh.voucher_payment_standard) : '--'}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Employment</span><span class="detail-stat-value">${hh.employment_status || '--'}</span></div>`;
+  html += `</div></div>`;
+
+  // Apartment Needs
+  html += `<div class="detail-section">`;
+  html += `<div class="detail-section-title">Apartment Needs</div>`;
+  html += `<div class="detail-grid">`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Move-in</span><span class="detail-stat-value">${hh.move_in_timeline || 'Flexible'}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Expires</span><span class="detail-stat-value ${hh.voucher_status !== 'Active' ? 'alert' : ''}">${hh.voucher_expiration || 'N/A'}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Elevator</span><span class="detail-stat-value">${hh.elevator_required ? 'Required' : 'Not required'}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Floor</span><span class="detail-stat-value">${hh.floor_preference || 'Any'}</span></div>`;
+  html += `<div class="detail-stat"><span class="detail-stat-label">Pets</span><span class="detail-stat-value">${hh.pets || 'None'}</span></div>`;
+  if (hh.accessibility_needed) {
+    html += `<div class="detail-stat"><span class="detail-stat-label">Accessibility</span><span class="detail-stat-value">${hh.accessibility_notes || 'Yes'}</span></div>`;
+  }
+  html += `</div></div>`;
+
+  html += `</div>`; // end two-col
+
+  // Documents
+  html += `<div class="detail-section">`;
+  html += `<div class="detail-section-title">Documents &mdash; ${docs.length}/${ALL_DOCS.length} verified</div>`;
+  html += `<div class="detail-inline-tags">`;
+  html += ALL_DOCS.map(d => `<span class="doc-tag ${docs.includes(d) ? 'complete' : 'missing'}" onclick="toggleDoc('${hh.id}','${d}',this)" style="cursor:pointer;">${d}</span>`).join('');
+  html += `</div></div>`;
+
+  // Preferences
+  if (neighborhoods.length > 0) {
+    html += `<div class="detail-section">`;
+    html += `<div class="detail-section-title">Preferences</div>`;
+    html += `<span class="detail-stat-label">Neighborhoods</span>`;
+    html += `<div class="detail-inline-tags" style="margin-top:6px;">`;
+    html += neighborhoods.map(n => `<span class="neighborhood-tag">${n}</span>`).join('');
+    html += `</div></div>`;
+  }
+
+  // Notes
+  if (hh.notes) {
+    html += `<div class="detail-section" style="padding:14px 20px;">`;
+    html += `<div class="detail-section-title">Notes</div>`;
+    html += `<div class="detail-notes-box">${hh.notes}</div>`;
+    html += `</div>`;
+  }
+
+  document.getElementById('householdDetailContent').innerHTML = html;
 }
 
 async function goToHousehold(id) {
-  // Switch to households view
-  switchPage('households');
-  // Find the index of the household
-  const households = await loadHouseholds();
-  const idx = households.findIndex(h => h.id === id);
-  if (idx > -1) {
-    // Close any open rows first
-    document.querySelectorAll('.expanded-row.active').forEach(r => r.classList.remove('active'));
-    // Open this one
-    setTimeout(() => {
-      const row = document.getElementById('expand-' + idx);
-      if (row) {
-        row.classList.add('active');
-        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, 100);
-  }
+  openHousehold(id);
 }
 
 async function toggleDoc(householdId, docName, el) {
@@ -1871,6 +2333,11 @@ async function handleSubmit(e) {
     accessibility_needed: document.getElementById('f-accessibilityCheck').checked,
     accessibility_notes: document.getElementById('f-accessibilityText').value,
     notes: document.getElementById('f-notes').value,
+    elevator_required: document.getElementById('f-elevator').checked,
+    floor_preference: document.getElementById('f-floorPref').value || null,
+    pets: document.getElementById('f-pets').value,
+    voucher_payment_standard: parseInt(document.getElementById('f-paymentStandard').value) || 0,
+    readiness_flags: Array.from(document.querySelectorAll('#readinessFlagsGrid input:checked')).map(cb => cb.value),
     stage: stage
   });
 
@@ -2006,6 +2473,26 @@ function fillFormFromExtraction(data) {
     const notesEl = document.getElementById('f-notes');
     if (notesEl) notesEl.value = data.notes;
   }
+
+  if (data.elevator_required) {
+    const el = document.getElementById('f-elevator');
+    if (el) el.checked = data.elevator_required === true || data.elevator_required === 'Yes';
+  }
+
+  if (data.floor_preference) {
+    const el = document.getElementById('f-floorPref');
+    if (el) el.value = data.floor_preference;
+  }
+
+  if (data.pets) {
+    const el = document.getElementById('f-pets');
+    if (el) el.value = data.pets;
+  }
+
+  if (data.voucher_payment_standard) {
+    const el = document.getElementById('f-paymentStandard');
+    if (el) el.value = data.voucher_payment_standard;
+  }
 }
 
 // ═══════════════════════════════════════════════
@@ -2086,6 +2573,25 @@ const CHAT_STEPS = [
     question: "When can they move in?",
     type: 'options',
     options: ['Immediate', 'Within 30 days', 'Within 60 days', 'Flexible']
+  },
+  {
+    key: 'elevator_required',
+    question: "Does the household need an elevator building?",
+    type: 'options',
+    options: ['Yes', 'No']
+  },
+  {
+    key: 'pets',
+    question: "Any pets?",
+    type: 'options',
+    options: ['None', 'Cat', 'Dog', 'Other']
+  },
+  {
+    key: 'voucher_payment_standard',
+    question: "What's the voucher payment standard? (Max the program will pay)",
+    type: 'text',
+    placeholder: 'e.g. 2217',
+    inputType: 'number'
   }
 ];
 
@@ -2392,6 +2898,167 @@ function fillFormFromChatData() {
     const el = document.getElementById('f-timeline');
     if (el) el.value = chatData.move_in_timeline;
   }
+  if (chatData.elevator_required === 'Yes') {
+    document.getElementById('f-elevator').checked = true;
+  }
+  if (chatData.pets) {
+    document.getElementById('f-pets').value = chatData.pets;
+  }
+  if (chatData.voucher_payment_standard !== undefined) {
+    document.getElementById('f-paymentStandard').value = chatData.voucher_payment_standard;
+  }
+}
+
+// ═══════════════════════════════════════════════
+// PIPELINE
+// ═══════════════════════════════════════════════
+
+const PIPELINE_STAGES = [
+  'Interview Requested', 'Interview Scheduled', 'Selected',
+  'Confirming Apartment', 'Confirming Rent', 'Confirming Documents',
+  'Submission', 'Inspection Scheduled', 'Inspection Passed',
+  'Approval Pending', 'Approved', 'Lease Signing', 'Lease Signed', 'Aftercare'
+];
+
+async function renderCWPipeline() {
+  const container = document.getElementById('cwPipelineCards');
+  const emptyMsg = document.getElementById('cwPipelineEmpty');
+  container.innerHTML = '';
+
+  const { data: entries, error } = await supabase
+    .from('pipeline')
+    .select('*, households(head_of_household, voucher_program, authorized_bedrooms), units(building_address, unit_number, monthly_rent, neighborhood)')
+    .eq('caseworker_id', currentUser.id)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Pipeline fetch error:', error);
+    container.innerHTML = '<p style="color:var(--coral);font-size:14px;">Error loading pipeline data.</p>';
+    emptyMsg.style.display = 'none';
+    return;
+  }
+
+  if (!entries || entries.length === 0) {
+    emptyMsg.style.display = 'block';
+    return;
+  }
+
+  emptyMsg.style.display = 'none';
+
+  entries.forEach(entry => {
+    const hh = entry.households || {};
+    const unit = entry.units || {};
+    const stage = entry.stage || PIPELINE_STAGES[0];
+    const stageIdx = PIPELINE_STAGES.indexOf(stage);
+
+    const hhName = hh.head_of_household || 'Unknown Household';
+    const unitAddr = unit.building_address
+      ? `${unit.building_address}${unit.unit_number ? ', #' + unit.unit_number : ''}`
+      : 'No unit assigned';
+
+    // Checklist fields
+    const checklistItems = [
+      { field: 'docs_confirmed', label: 'Docs Confirmed', editable: true },
+      { field: 'caseworker_notified', label: 'Caseworker Notified', editable: true },
+      { field: 'rpp_submitted', label: 'RPP Submitted', editable: false },
+      { field: 'inspection_passed', label: 'Inspection Passed', editable: false },
+      { field: 'lease_signed', label: 'Lease Signed', editable: false }
+    ];
+
+    // Stage bar segments
+    const stageSegments = PIPELINE_STAGES.map((s, i) => {
+      let cls = 'cw-stage-segment';
+      if (i < stageIdx) cls += ' completed';
+      else if (i === stageIdx) cls += ' current';
+      return `<div class="${cls}" title="${s}"></div>`;
+    }).join('');
+
+    // Checklist HTML
+    const checklistHTML = checklistItems.map(item => {
+      const checked = entry[item.field] ? 'checked' : '';
+      const disabledClass = item.editable ? '' : ' disabled';
+      const disabledAttr = item.editable ? '' : ' disabled';
+      const onChange = item.editable
+        ? `onchange="toggleChecklistItem('${entry.id}', '${item.field}', this.checked)"`
+        : '';
+      return `<label class="cw-checklist-item${disabledClass}">
+        <input type="checkbox" ${checked} ${disabledAttr} ${onChange}>
+        ${item.label}
+      </label>`;
+    }).join('');
+
+    // Activity timeline
+    let timelineHTML = '';
+    if (entry.activity_log && Array.isArray(entry.activity_log) && entry.activity_log.length > 0) {
+      const recentActivity = entry.activity_log.slice(-5).reverse();
+      timelineHTML = `
+        <div class="cw-timeline">
+          <div class="cw-timeline-title">Activity</div>
+          ${recentActivity.map(a => `
+            <div class="cw-timeline-item">
+              <div class="cw-timeline-dot"></div>
+              <div class="cw-timeline-text">${a.text || a.message || ''}</div>
+              <div class="cw-timeline-time">${a.timestamp ? new Date(a.timestamp).toLocaleDateString() : ''}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'cw-pipeline-card';
+    card.innerHTML = `
+      <div class="cw-pipeline-header">
+        <div class="cw-pipeline-title">${hhName} &rarr; ${unitAddr}</div>
+        <span class="status-badge ${stageIdx >= PIPELINE_STAGES.length - 1 ? 'ready' : 'pending'}">${stage}</span>
+      </div>
+      <div class="cw-pipeline-meta">
+        <span>${hh.voucher_program || 'N/A'}</span>
+        <span>${hh.authorized_bedrooms ? hh.authorized_bedrooms + ' BR' : ''}</span>
+        <span>${unit.monthly_rent ? '$' + Number(unit.monthly_rent).toLocaleString() + '/mo' : ''}</span>
+        <span>${unit.neighborhood || ''}</span>
+      </div>
+      <div class="cw-stage-progress">
+        <div class="cw-stage-bar">${stageSegments}</div>
+        <div class="cw-stage-label">${stage}<span class="stage-index"> (${stageIdx + 1} of ${PIPELINE_STAGES.length})</span></div>
+      </div>
+      <div class="cw-checklist">
+        <div class="cw-checklist-title">Closing Checklist</div>
+        <div class="cw-checklist-items">${checklistHTML}</div>
+      </div>
+      <div class="cw-pipeline-notes">
+        <div class="cw-checklist-title">Notes</div>
+        <textarea placeholder="Add a note..." id="cwNote-${entry.id}">${entry.caseworker_notes || ''}</textarea>
+        <div class="notes-actions">
+          <button class="btn-save-note" onclick="savePipelineNote('${entry.id}')">Save Note</button>
+        </div>
+      </div>
+      ${timelineHTML}
+    `;
+    container.appendChild(card);
+  });
+}
+
+async function toggleChecklistItem(pipelineId, field, checked) {
+  const update = {};
+  update[field] = checked;
+  const { error } = await supabase.from('pipeline').update(update).eq('id', pipelineId);
+  if (error) {
+    showToast('Error updating checklist');
+    console.error(error);
+  }
+}
+
+async function savePipelineNote(pipelineId) {
+  const textarea = document.getElementById('cwNote-' + pipelineId);
+  if (!textarea) return;
+  const { error } = await supabase.from('pipeline').update({ caseworker_notes: textarea.value }).eq('id', pipelineId);
+  if (error) {
+    showToast('Error saving note');
+    console.error(error);
+  } else {
+    showToast('Note saved');
+  }
 }
 
 // ═══════════════════════════════════════════════
@@ -2417,6 +3084,7 @@ function switchPage(page) {
   if (page === 'dashboard') renderDashboard();
   if (page === 'households') renderHouseholds();
   if (page === 'add') showModeSelect();
+  if (page === 'pipeline') renderCWPipeline();
 
   // Scroll to top
   document.querySelector('.main-content').scrollTop = 0;

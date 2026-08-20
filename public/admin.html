@@ -416,6 +416,979 @@
       color: var(--text-muted);
       margin-bottom: 16px;
     }
+
+    /* ── ADMIN PIPELINE CARDS ── */
+    .admin-pipeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: box-shadow .15s;
+    }
+
+    .admin-pipeline-card:hover {
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+
+    .admin-pipeline-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .admin-pipeline-card-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .admin-pipeline-card-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .admin-pipeline-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .admin-pipeline-meta strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Stage badge colors */
+    .admin-stage-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .admin-stage-badge.stage-interview { background: rgba(99,102,241,.10); color: #6366f1; }
+    .admin-stage-badge.stage-selected { background: var(--green-soft); color: var(--forest); }
+    .admin-stage-badge.stage-confirming { background: rgba(59,130,246,.10); color: #3b82f6; }
+    .admin-stage-badge.stage-submission { background: var(--amber-soft); color: var(--amber); }
+    .admin-stage-badge.stage-inspection { background: rgba(168,85,247,.10); color: #a855f7; }
+    .admin-stage-badge.stage-inspection-passed { background: var(--green-soft); color: var(--forest); }
+    .admin-stage-badge.stage-inspection-failed { background: var(--coral-soft); color: var(--coral); }
+    .admin-stage-badge.stage-approval { background: rgba(20,184,166,.10); color: #0d9488; }
+    .admin-stage-badge.stage-approved { background: var(--green-soft); color: var(--forest); }
+    .admin-stage-badge.stage-signing { background: var(--amber-soft); color: var(--amber); }
+    .admin-stage-badge.stage-signed { background: var(--forest-light); color: var(--forest-dark); }
+    .admin-stage-badge.stage-aftercare { background: var(--coral-soft); color: var(--coral); }
+
+    /* Stage progress bar */
+    .admin-stage-progress {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .admin-stage-step {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .admin-stage-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      margin: 0 auto 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .admin-stage-step.completed .admin-stage-dot {
+      background: var(--forest);
+    }
+
+    .admin-stage-step.current .admin-stage-dot {
+      background: var(--forest);
+      box-shadow: 0 0 0 3px var(--forest-soft);
+    }
+
+    .admin-stage-label {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .admin-stage-step.completed .admin-stage-label,
+    .admin-stage-step.current .admin-stage-label {
+      color: var(--forest);
+    }
+
+    .admin-stage-line {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      right: -50%;
+      height: 2px;
+      background: var(--border-strong);
+      z-index: 0;
+    }
+
+    .admin-stage-step.completed .admin-stage-line {
+      background: var(--forest);
+    }
+
+    .admin-stage-step:last-child .admin-stage-line {
+      display: none;
+    }
+
+    /* Stage select dropdown */
+    .admin-stage-select {
+      padding: 6px 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .admin-stage-select:focus {
+      border-color: var(--forest);
+    }
+
+    /* Closing checklist */
+    .admin-checklist {
+      margin-bottom: 16px;
+    }
+
+    .admin-checklist-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .admin-checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .admin-checklist-item:hover {
+      color: var(--text);
+    }
+
+    .admin-checklist-item .check-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 10px;
+      transition: all .15s;
+    }
+
+    .admin-checklist-item.checked .check-icon {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: white;
+    }
+
+    .admin-checklist-item.checked {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    /* Notes form */
+    .admin-notes-form {
+      margin-top: 12px;
+    }
+
+    .admin-notes-form textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: var(--font-sans);
+      color: var(--text);
+      background: var(--bg);
+      resize: vertical;
+      min-height: 60px;
+      outline: none;
+    }
+
+    .admin-notes-form textarea:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px var(--forest-soft);
+    }
+
+    .admin-btn-note {
+      margin-top: 6px;
+      padding: 6px 14px;
+      background: var(--forest);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .admin-btn-note:hover { background: var(--forest-dark); }
+
+    /* Activity timeline */
+    .admin-activity {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .admin-activity-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .admin-activity-item {
+      display: flex;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      padding: 3px 0;
+    }
+
+    .admin-activity-item .activity-date {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .admin-pipeline-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .admin-pipeline-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* ── ADMIN FORM CONTAINER ── */
+    .admin-form-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .admin-form-container .form-section {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .admin-form-container .form-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .admin-form-container .form-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .admin-form-container .form-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .admin-form-container .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .admin-form-container .form-group label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .admin-form-container .form-group input,
+    .admin-form-container .form-group select,
+    .admin-form-container .form-group textarea {
+      padding: 8px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .admin-form-container .form-group input:focus,
+    .admin-form-container .form-group select:focus,
+    .admin-form-container .form-group textarea:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px var(--forest-soft);
+    }
+
+    .admin-form-container .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .admin-form-container .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 6px;
+    }
+
+    .admin-form-container .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 4px 0;
+    }
+
+    .admin-form-container .checkbox-item input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--forest);
+    }
+
+    /* ── ADMIN TAG SELECT (neighborhoods) ── */
+    .admin-tag-select {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .admin-tag-select .tag-pill {
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all .15s;
+      user-select: none;
+    }
+
+    .admin-tag-select .tag-pill:hover {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+
+    .admin-tag-select .tag-pill.selected {
+      background: var(--forest);
+      color: white;
+      border-color: var(--forest);
+    }
+
+    /* ── DRAG AND DROP ZONE ── */
+    .admin-dropzone {
+      border: 2px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 32px 20px;
+      text-align: center;
+      background: var(--bg);
+      transition: all .2s;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+
+    .admin-dropzone:hover,
+    .admin-dropzone.dragover {
+      border-color: var(--forest);
+      background: var(--forest-soft);
+    }
+
+    .admin-dropzone-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+
+    .admin-dropzone-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .admin-dropzone-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .admin-dropzone input[type="file"] {
+      display: none;
+    }
+
+    /* ── SUMMARY PREVIEW BOX ── */
+    .admin-summary-preview {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--forest);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .admin-summary-preview .summary-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+
+    .admin-summary-preview textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: var(--font-sans);
+      color: var(--text);
+      background: var(--bg);
+      resize: vertical;
+      outline: none;
+      line-height: 1.6;
+    }
+
+    .admin-summary-preview textarea:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px var(--forest-soft);
+    }
+
+    /* ── MODE SELECTOR ── */
+    .admin-mode-selector {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .admin-mode-btn {
+      flex: 1;
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: center;
+      transition: all .15s;
+      font-family: var(--font-sans);
+    }
+
+    .admin-mode-btn:hover {
+      border-color: var(--forest);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .admin-mode-btn .mode-icon {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .admin-mode-btn .mode-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .admin-mode-btn .mode-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── ADMIN CHAT MODE ── */
+    .admin-chat-container {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .admin-chat-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+    }
+
+    .admin-chat-header .chat-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .admin-chat-progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .admin-chat-progress-bar {
+      width: 80px;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .admin-chat-progress-fill {
+      height: 100%;
+      background: var(--forest);
+      transition: width .3s;
+      width: 0%;
+    }
+
+    .admin-chat-progress-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .admin-chat-messages {
+      padding: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .admin-chat-bubble {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      animation: adminChatFadeIn .3s ease;
+    }
+
+    @keyframes adminChatFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .admin-chat-bubble.system {
+      background: var(--forest-light);
+      color: var(--forest-dark);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .admin-chat-bubble.user {
+      background: var(--forest);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .admin-chat-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-self: flex-start;
+      animation: adminChatFadeIn .3s ease;
+    }
+
+    .admin-chat-option-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--forest);
+      background: transparent;
+      color: var(--forest);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .admin-chat-option-btn:hover {
+      background: var(--forest);
+      color: white;
+    }
+
+    .admin-chat-multi-select {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-self: flex-start;
+      animation: adminChatFadeIn .3s ease;
+    }
+
+    .admin-chat-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .admin-chat-chip.selected {
+      background: var(--forest);
+      color: white;
+      border-color: var(--forest);
+    }
+
+    .admin-chat-multi-done {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: none;
+      background: var(--forest);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+    }
+
+    .admin-chat-input-row {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .admin-chat-input-row input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: var(--font-sans);
+      outline: none;
+    }
+
+    .admin-chat-input-row input:focus {
+      border-color: var(--forest);
+    }
+
+    .admin-chat-input-row button {
+      padding: 8px 16px;
+      background: var(--forest);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+    }
+
+    .admin-chat-review-btn {
+      align-self: center;
+      padding: 10px 24px;
+      background: var(--forest);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      margin-top: 8px;
+      animation: adminChatFadeIn .3s ease;
+    }
+
+    .admin-chat-review-btn:hover {
+      background: var(--forest-dark);
+    }
+
+    /* ── ADMIN ADD STATE VISIBILITY ── */
+    .admin-add-state { display: none; }
+    .admin-add-state.active { display: block; }
+
+    /* ── EXTRACTED BANNER ── */
+    .admin-extracted-banner {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--forest-light);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--forest-dark);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    /* ── ORG DISPLAY ── */
+    .admin-org-display {
+      padding: 8px 12px;
+      background: var(--forest-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-secondary);
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── HOUSEHOLD CARDS ── */
+    .household-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .household-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow .15s;
+    }
+
+    .household-card:hover {
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+
+    .household-card-main {
+      padding: 20px;
+      cursor: pointer;
+    }
+
+    .household-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .household-card-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .household-card-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .household-card-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .household-card-meta strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .household-card-summary {
+      background: var(--bg);
+      border-left: 3px solid var(--forest);
+      padding: 10px 14px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-top: 12px;
+      white-space: pre-wrap;
+    }
+
+    .household-card-summary-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 4px;
+    }
+
+    .household-card-details {
+      display: none;
+      padding: 0 20px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .household-card-details.expanded {
+      display: block;
+    }
+
+    .household-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .household-detail-item {
+      font-size: 12px;
+    }
+
+    .household-detail-item .detail-label {
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 2px;
+    }
+
+    .household-detail-item .detail-value {
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .household-card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .btn-secondary {
+      padding: 6px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      color: var(--text-secondary);
+      background: transparent;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+
+    .btn-small {
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .admin-form-container .btn-submit {
+      width: 100%;
+      padding: 12px 24px;
+      background: var(--forest);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: background .15s;
+      margin-top: 8px;
+    }
+
+    .admin-form-container .btn-submit:hover {
+      background: var(--forest-dark);
+    }
+
+    .admin-form-container .btn-submit:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .btn-generate {
+      padding: 8px 20px;
+      background: transparent;
+      color: var(--forest);
+      border: 2px solid var(--forest);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .btn-generate:hover {
+      background: var(--forest);
+      color: white;
+    }
+
+    .btn-generate:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
@@ -444,6 +1417,7 @@
     <button class="tab-pill" data-tab="organizations">Organizations</button>
     <button class="tab-pill" data-tab="invitations">Invitations</button>
     <button class="tab-pill" data-tab="households">Households</button>
+    <button class="tab-pill" data-tab="add-household">Add Household</button>
     <button class="tab-pill" data-tab="units">Units</button>
     <button class="tab-pill" data-tab="pipeline">Pipeline</button>
   </div>
@@ -580,23 +1554,310 @@
     <!-- HOUSEHOLDS TAB -->
     <div class="tab-content" id="tab-households">
       <div class="section-title">Households</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Program</th>
-              <th>Bedrooms</th>
-              <th>Status</th>
-              <th>Stage</th>
-              <th>Caseworker</th>
-              <th>Added</th>
-            </tr>
-          </thead>
-          <tbody id="households-tbody">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+      <div id="householdsLoading" style="text-align:center;padding:40px;color:var(--text-muted);"><span class="spinner"></span> Loading households...</div>
+      <div class="household-cards" id="householdCards"></div>
+      <div id="householdsEmpty" style="display:none;text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px;">No households found.</div>
+    </div>
+
+    <!-- ADD HOUSEHOLD TAB -->
+    <div class="tab-content" id="tab-add-household">
+      <div class="section-title">Add Household</div>
+      <div class="admin-form-container">
+
+        <!-- MODE SELECTOR -->
+        <div class="admin-add-state active" id="adminModeSelect">
+          <div class="admin-mode-selector">
+            <div class="admin-mode-btn" onclick="adminShowDropzone()">
+              <div class="mode-icon">&#128196;</div>
+              <div class="mode-label">Upload Voucher PDF</div>
+              <div class="mode-desc">Auto-extract from document</div>
+            </div>
+            <div class="admin-mode-btn" onclick="adminStartChat()">
+              <div class="mode-icon">&#128172;</div>
+              <div class="mode-label">Start Conversation</div>
+              <div class="mode-desc">Step-by-step questions</div>
+            </div>
+            <div class="admin-mode-btn" onclick="adminShowForm()">
+              <div class="mode-icon">&#128221;</div>
+              <div class="mode-label">Fill Form Directly</div>
+              <div class="mode-desc">Manual entry</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF DROP ZONE -->
+        <div class="admin-add-state" id="adminDropzoneView">
+          <div class="admin-dropzone" id="adminDropzone" onclick="document.getElementById('adminFileInput').click()">
+            <div class="admin-dropzone-icon">&#128196;</div>
+            <div class="admin-dropzone-text">Drop voucher PDF here or click to browse</div>
+            <div class="admin-dropzone-sub">Supports .pdf files -- we'll auto-extract household info</div>
+            <input type="file" id="adminFileInput" accept=".pdf" onchange="adminHandleFileSelect(event)">
+          </div>
+          <button class="btn-secondary" onclick="adminShowModeSelect()" style="margin-bottom:16px;">Back to options</button>
+        </div>
+
+        <!-- CHAT MODE -->
+        <div class="admin-add-state" id="adminChatView">
+          <div class="admin-chat-container">
+            <div class="admin-chat-header">
+              <span class="chat-title">Add Household</span>
+              <div class="admin-chat-progress">
+                <div class="admin-chat-progress-bar"><div class="admin-chat-progress-fill" id="adminChatProgressFill"></div></div>
+                <span class="admin-chat-progress-text" id="adminChatProgressText">0 / 15</span>
+              </div>
+            </div>
+            <div class="admin-chat-messages" id="adminChatMessages"></div>
+            <div class="admin-chat-input-row" id="adminChatInputRow">
+              <button class="btn-secondary" onclick="adminChatGoBack()" style="padding:8px 12px;font-size:12px;">Back</button>
+              <input type="text" id="adminChatInput" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')adminHandleChatInput()">
+              <button onclick="adminHandleChatInput()">Send</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REVIEW FORM -->
+        <div class="admin-add-state" id="adminReviewForm">
+          <div class="admin-extracted-banner" id="adminExtractedBanner">
+            <span style="font-size:16px;">&#10003;</span> Data extracted -- review and submit below
+          </div>
+
+          <form id="adminAddHouseholdForm" onsubmit="adminHandleSubmit(event)">
+
+            <!-- ASSIGNMENT -->
+            <div class="form-section">
+              <div class="form-section-title">Assignment</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Caseworker *</label>
+                  <select id="af-caseworker" required>
+                    <option value="">Select caseworker...</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Organization</label>
+                  <div class="admin-org-display" id="af-orgDisplay">Select a caseworker first</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VOUCHER INFORMATION -->
+            <div class="form-section">
+              <div class="form-section-title">Voucher Information</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Voucher Program *</label>
+                  <select id="af-program" required>
+                    <option value="">Select program...</option>
+                    <option value="CityFHEPS">CityFHEPS</option>
+                    <option value="FHEPS">FHEPS</option>
+                    <option value="Section 8/HCV">Section 8/HCV</option>
+                    <option value="HASA">HASA</option>
+                    <option value="SOTA">SOTA</option>
+                    <option value="HPD">HPD</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Voucher Status *</label>
+                  <select id="af-voucherStatus" required>
+                    <option value="">Select status...</option>
+                    <option value="Active">Active</option>
+                    <option value="Expired">Expired</option>
+                    <option value="Pending Renewal">Pending Renewal</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Authorized Bedroom Size *</label>
+                  <select id="af-bedroomSize" required>
+                    <option value="">Select size...</option>
+                    <option value="Studio">Studio</option>
+                    <option value="1BR">1BR</option>
+                    <option value="2BR">2BR</option>
+                    <option value="3BR">3BR</option>
+                    <option value="4BR">4BR</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Voucher Expiration Date</label>
+                  <input type="date" id="af-expirationDate">
+                </div>
+              </div>
+            </div>
+
+            <!-- HOUSEHOLD INFORMATION -->
+            <div class="form-section">
+              <div class="form-section-title">Household Information</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Head of Household Name *</label>
+                  <input type="text" id="af-name" placeholder="Full name" required>
+                </div>
+                <div class="form-group">
+                  <label>Household Members *</label>
+                  <input type="number" id="af-members" min="1" max="12" placeholder="Number of members" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- FINANCIAL INFORMATION -->
+            <div class="form-section">
+              <div class="form-section-title">Financial Information</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Employment Status *</label>
+                  <select id="af-employment" required>
+                    <option value="">Select status...</option>
+                    <option value="Employed">Employed</option>
+                    <option value="Unemployed">Unemployed</option>
+                    <option value="SSI/SSDI">SSI/SSDI</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Monthly Income ($)</label>
+                  <input type="number" id="af-income" min="0" step="1" placeholder="0">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>SSI/SSDI Amount ($)</label>
+                  <input type="number" id="af-ssi" min="0" step="1" placeholder="0">
+                </div>
+                <div class="form-group">
+                  <label>Tenant Contribution ($)</label>
+                  <input type="number" id="af-tenantContribution" min="0" step="1" placeholder="0">
+                </div>
+                <div class="form-group">
+                  <label>Maximum Rent ($)</label>
+                  <input type="number" id="af-maxRent" min="0" step="1" placeholder="Auto or manual">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Voucher Payment Standard ($)</label>
+                  <input type="number" id="af-paymentStandard" min="0" step="1" placeholder="Max program will pay">
+                </div>
+              </div>
+            </div>
+
+            <!-- DOCUMENTATION CHECKLIST -->
+            <div class="form-section">
+              <div class="form-section-title">Documentation Checklist</div>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" id="af-doc-id" value="Valid ID"> Valid ID</label>
+                <label class="checkbox-item"><input type="checkbox" id="af-doc-income" value="Proof of Income"> Proof of Income</label>
+                <label class="checkbox-item"><input type="checkbox" id="af-doc-voucher" value="Voucher Letter"> Voucher Letter</label>
+                <label class="checkbox-item"><input type="checkbox" id="af-doc-background" value="Background Check"> Background Check</label>
+                <label class="checkbox-item"><input type="checkbox" id="af-doc-credit" value="Credit Report"> Credit Report</label>
+                <label class="checkbox-item"><input type="checkbox" id="af-doc-housing" value="Housing History"> Housing History</label>
+                <label class="checkbox-item"><input type="checkbox" id="af-doc-approval" value="Program Approval Letter"> Program Approval Letter</label>
+              </div>
+            </div>
+
+            <!-- APARTMENT CRITERIA -->
+            <div class="form-section">
+              <div class="form-section-title">Apartment Criteria</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Elevator Required</label>
+                  <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
+                    <input type="checkbox" id="af-elevator" style="width:16px;height:16px;accent-color:var(--forest);">
+                    <span style="font-size:13px;color:var(--text-secondary);">Household needs elevator building</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Floor Preference</label>
+                  <select id="af-floorPref">
+                    <option value="">Any floor</option>
+                    <option value="Ground floor">Ground floor</option>
+                    <option value="Low floor (1-3)">Low floor (1-3)</option>
+                    <option value="Any floor">Any floor</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Pets</label>
+                  <select id="af-pets">
+                    <option value="None">None</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- PLACEMENT PREFERENCES -->
+            <div class="form-section">
+              <div class="form-section-title">Placement Preferences</div>
+              <div class="form-group" style="margin-bottom:16px;">
+                <label>Preferred Neighborhoods</label>
+                <div class="admin-tag-select" id="adminNeighborhoodTags"></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Move-in Timeline</label>
+                  <select id="af-timeline">
+                    <option value="Immediate">Immediate</option>
+                    <option value="Within 30 days">Within 30 days</option>
+                    <option value="Within 60 days">Within 60 days</option>
+                    <option value="Flexible">Flexible</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Accessibility Requirements</label>
+                  <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
+                    <input type="checkbox" id="af-accessibilityCheck" style="width:16px;height:16px;accent-color:var(--forest);">
+                    <input type="text" id="af-accessibilityText" placeholder="Describe if needed" style="flex:1;">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- READINESS FLAGS -->
+            <div class="form-section">
+              <div class="form-section-title">Readiness Flags</div>
+              <div style="margin-bottom:12px;font-size:13px;color:var(--text-muted);">Any issues that could prevent or delay closing? Select all that apply.</div>
+              <div class="checkbox-grid" id="adminReadinessFlagsGrid">
+                <label class="checkbox-item"><input type="checkbox" value="Pending background check"> Pending background check</label>
+                <label class="checkbox-item"><input type="checkbox" value="Income recalculation needed"> Income recalculation needed</label>
+                <label class="checkbox-item"><input type="checkbox" value="Missing documentation"> Missing documentation</label>
+                <label class="checkbox-item"><input type="checkbox" value="Voucher expiring soon"> Voucher expiring soon</label>
+                <label class="checkbox-item"><input type="checkbox" value="Household composition change"> Household composition change</label>
+                <label class="checkbox-item"><input type="checkbox" value="Prior landlord reference pending"> Prior landlord reference pending</label>
+                <label class="checkbox-item"><input type="checkbox" value="Credit issues"> Credit issues</label>
+                <label class="checkbox-item"><input type="checkbox" value="Caseworker availability"> Caseworker availability</label>
+              </div>
+            </div>
+
+            <!-- NOTES -->
+            <div class="form-section">
+              <div class="form-section-title">Notes</div>
+              <div class="form-group">
+                <textarea id="af-notes" placeholder="Additional context, special circumstances, etc."></textarea>
+              </div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="form-section">
+              <div class="form-section-title">Summary</div>
+              <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Generate an AI summary of this household's profile for landlord matching.</p>
+              <button type="button" class="btn-generate" id="adminGenerateSummaryBtn" onclick="adminGenerateSummary()">Generate Summary</button>
+              <div class="admin-summary-preview" id="adminSummaryPreview" style="display:none;">
+                <div class="summary-label">AI-Generated Summary</div>
+                <textarea id="af-summary" placeholder="Summary will appear here..."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="adminSubmitBtn">Add Household</button>
+          </form>
+
+          <button class="btn-secondary" onclick="adminShowModeSelect()" style="margin-top:12px;">Back to options</button>
+        </div>
+
       </div>
     </div>
 
@@ -625,25 +1886,11 @@
 
     <!-- PIPELINE TAB -->
     <div class="tab-content" id="tab-pipeline">
-      <div class="section-title">Pipeline</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Household</th>
-              <th>Unit</th>
-              <th>Program</th>
-              <th>Stage</th>
-              <th>Landlord</th>
-              <th>Caseworker</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody id="pipeline-tbody">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="section-title">Pipeline — All Entries</div>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">Master view of every pipeline entry across all landlords and caseworkers. Advance stages, toggle checklist items, and add notes.</p>
+      <div id="pipelineLoading" style="text-align:center;padding:40px;color:var(--text-muted);"><span class="spinner"></span> Loading pipeline...</div>
+      <div id="adminPipelineCards"></div>
+      <div id="adminPipelineEmpty" class="admin-pipeline-empty" style="display:none;">No pipeline entries yet.</div>
     </div>
 
   </div>
@@ -683,7 +1930,125 @@
       return type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
     }
 
-    const PIPELINE_STAGES = ['Accepted', 'Submission', 'Inspection', 'Approval', 'Lease Signed'];
+    const PIPELINE_STAGES = [
+      'Interview Requested',
+      'Interview Scheduled',
+      'Selected',
+      'Confirming Apartment',
+      'Confirming Rent',
+      'Confirming Documents',
+      'Submission',
+      'Inspection Scheduled',
+      'Inspection Passed',
+      'Inspection Failed',
+      'Approval Pending',
+      'Approved',
+      'Lease Signing',
+      'Lease Signed',
+      'Aftercare'
+    ];
+
+    const ADMIN_STAGE_SHORT_LABELS = {
+      'Interview Requested': 'Int. Req.',
+      'Interview Scheduled': 'Int. Sched.',
+      'Selected': 'Selected',
+      'Confirming Apartment': 'Apt.',
+      'Confirming Rent': 'Rent',
+      'Confirming Documents': 'Docs',
+      'Submission': 'Submit',
+      'Inspection Scheduled': 'Insp. Sched.',
+      'Inspection Passed': 'Insp. Pass',
+      'Inspection Failed': 'Insp. Fail',
+      'Approval Pending': 'Approval',
+      'Approved': 'Approved',
+      'Lease Signing': 'Signing',
+      'Lease Signed': 'Signed',
+      'Aftercare': 'Aftercare'
+    };
+
+    const ADMIN_CHECKLIST_FIELDS = [
+      { key: 'apartment_confirmed', label: 'Apartment confirmed' },
+      { key: 'rent_confirmed', label: 'Rent confirmed' },
+      { key: 'documents_confirmed', label: 'Documents confirmed' },
+      { key: 'caseworker_notified', label: 'Caseworker notified' },
+      { key: 'submission_ready', label: 'Submission package ready' }
+    ];
+
+    function adminGetStageIndex(stage) {
+      const idx = PIPELINE_STAGES.indexOf(stage);
+      return idx >= 0 ? idx : 0;
+    }
+
+    function adminGetStageBadgeClass(stage) {
+      switch (stage) {
+        case 'Interview Requested':
+        case 'Interview Scheduled': return 'stage-interview';
+        case 'Selected': return 'stage-selected';
+        case 'Confirming Apartment':
+        case 'Confirming Rent':
+        case 'Confirming Documents': return 'stage-confirming';
+        case 'Submission': return 'stage-submission';
+        case 'Inspection Scheduled': return 'stage-inspection';
+        case 'Inspection Passed': return 'stage-inspection-passed';
+        case 'Inspection Failed': return 'stage-inspection-failed';
+        case 'Approval Pending': return 'stage-approval';
+        case 'Approved': return 'stage-approved';
+        case 'Lease Signing': return 'stage-signing';
+        case 'Lease Signed': return 'stage-signed';
+        case 'Aftercare': return 'stage-aftercare';
+        default: return 'stage-selected';
+      }
+    }
+
+    function adminRenderStageProgress(currentStage) {
+      const currentIdx = adminGetStageIndex(currentStage);
+      let html = '<div class="admin-stage-progress">';
+      PIPELINE_STAGES.forEach((stage, i) => {
+        let cls = '';
+        if (i < currentIdx) cls = 'completed';
+        else if (i === currentIdx) cls = 'current';
+        html += `<div class="admin-stage-step ${cls}">`;
+        if (i < PIPELINE_STAGES.length - 1) html += `<div class="admin-stage-line"></div>`;
+        html += `<div class="admin-stage-dot"></div>`;
+        html += `<div class="admin-stage-label">${ADMIN_STAGE_SHORT_LABELS[stage] || stage}</div>`;
+        html += `</div>`;
+      });
+      html += '</div>';
+      return html;
+    }
+
+    async function adminToggleChecklist(pipelineId, field, checked) {
+      const update = {};
+      update[field] = checked;
+      const { error } = await supabase.from('pipeline').update(update).eq('id', pipelineId);
+      if (error) showToast('Error: ' + error.message, true);
+    }
+
+    async function adminChangeStage(pipelineId, newStage) {
+      const { error } = await supabase.from('pipeline').update({ stage: newStage }).eq('id', pipelineId);
+      if (error) showToast('Error: ' + error.message, true);
+      else { showToast('Stage updated to ' + newStage); loadPipeline(); }
+    }
+
+    async function adminAddNote(pipelineId) {
+      const textarea = document.getElementById('admin-note-' + pipelineId);
+      const note = textarea ? textarea.value.trim() : '';
+      if (!note) { showToast('Please enter a note', true); return; }
+
+      const { data: existing } = await supabase.from('pipeline').select('notes').eq('id', pipelineId).single();
+      const timestamp = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const newNote = `${timestamp} — ${note}`;
+      const combined = existing && existing.notes ? existing.notes + '\n' + newNote : newNote;
+
+      const { error } = await supabase.from('pipeline').update({ notes: combined }).eq('id', pipelineId);
+      if (error) {
+        showToast('Error saving note', true);
+        return;
+      }
+      textarea.value = '';
+      showToast('Note added');
+      loadPipeline();
+    }
 
     /* ═══════════════════════════════════════
        TAB SWITCHING
@@ -819,30 +2184,162 @@
     async function loadHouseholds() {
       const { data, error } = await supabase
         .from('households')
-        .select('id, name, program, bedrooms, status, stage, created_at, caseworker_id, profiles!households_caseworker_id_fkey(full_name)')
+        .select('*, profiles!households_caseworker_id_fkey(full_name)')
         .order('created_at', { ascending: false });
 
-      const tbody = document.getElementById('households-tbody');
+      const container = document.getElementById('householdCards');
+      const loadingEl = document.getElementById('householdsLoading');
+      const emptyEl = document.getElementById('householdsEmpty');
+
+      if (loadingEl) loadingEl.style.display = 'none';
+
       if (error || !data) {
-        tbody.innerHTML = `<tr><td colspan="7" class="table-empty">Failed to load households.</td></tr>`;
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted);">Failed to load households.</div>';
+        emptyEl.style.display = 'none';
         return;
       }
       if (data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="table-empty">No households found.</td></tr>`;
+        container.innerHTML = '';
+        emptyEl.style.display = 'block';
         return;
       }
 
-      tbody.innerHTML = data.map(h => `
-        <tr>
-          <td>${escapeHtml(h.name)}</td>
-          <td>${escapeHtml(h.program) || '--'}</td>
-          <td>${h.bedrooms ?? '--'}</td>
-          <td><span class="badge ${h.status === 'active' ? 'badge-green' : 'badge-muted'}">${h.status || '--'}</span></td>
-          <td>${escapeHtml(h.stage) || '--'}</td>
-          <td>${escapeHtml(h.profiles?.full_name) || '--'}</td>
-          <td>${formatDate(h.created_at)}</td>
-        </tr>
-      `).join('');
+      emptyEl.style.display = 'none';
+      renderHouseholdCards(data, container);
+    }
+
+    function renderHouseholdCards(households, container) {
+      let html = '';
+      households.forEach(h => {
+        const name = escapeHtml(h.head_of_household || h.name || 'Unknown');
+        const program = escapeHtml(h.voucher_program || h.program || '--');
+        const bedrooms = h.authorized_bedrooms || h.bedrooms || '--';
+        const status = h.voucher_status || h.status || '--';
+        const stage = escapeHtml(h.stage || '--');
+        const caseworker = escapeHtml(h.profiles?.full_name || '--');
+        const dateStr = formatDate(h.created_at);
+        const summary = h.summary || '';
+
+        const statusClass = status === 'Active' || status === 'active' ? 'badge-green'
+          : status === 'Expired' ? 'badge-coral'
+          : status === 'Pending Renewal' ? 'badge-amber'
+          : 'badge-muted';
+
+        const stageClass = stage === 'Ready' ? 'badge-green'
+          : stage === 'Pending' ? 'badge-amber'
+          : 'badge-muted';
+
+        html += `<div class="household-card">`;
+        html += `<div class="household-card-main" onclick="toggleHouseholdDetail('${h.id}')">`;
+
+        // Header
+        html += `<div class="household-card-header">`;
+        html += `<div class="household-card-name">${name}</div>`;
+        html += `<div class="household-card-badges">`;
+        html += `<span class="badge ${statusClass}">${escapeHtml(status)}</span>`;
+        html += `<span class="badge ${stageClass}">${stage}</span>`;
+        html += `<span class="badge badge-muted">${escapeHtml(String(bedrooms))}</span>`;
+        html += `</div></div>`;
+
+        // Meta
+        html += `<div class="household-card-meta">`;
+        html += `<span><strong>Program:</strong> ${program}</span>`;
+        html += `<span><strong>Caseworker:</strong> ${caseworker}</span>`;
+        html += `<span><strong>Added:</strong> ${dateStr}</span>`;
+        html += `</div>`;
+
+        // Summary
+        if (summary) {
+          html += `<div class="household-card-summary">`;
+          html += `<div class="household-card-summary-label">Profile Summary</div>`;
+          html += escapeHtml(summary);
+          html += `</div>`;
+        }
+
+        html += `</div>`; // end main
+
+        // Expandable details
+        html += `<div class="household-card-details" id="hh-detail-${h.id}">`;
+        html += `<div class="household-detail-grid">`;
+        html += detailItem('Employment', h.employment_status);
+        html += detailItem('Monthly Income', h.monthly_income ? '$' + Number(h.monthly_income).toLocaleString() : '--');
+        html += detailItem('SSI/SSDI', h.ssi_ssdi_amount ? '$' + Number(h.ssi_ssdi_amount).toLocaleString() : '--');
+        html += detailItem('Tenant Contribution', h.tenant_contribution ? '$' + Number(h.tenant_contribution).toLocaleString() : '--');
+        html += detailItem('Max Rent', h.max_rent ? '$' + Number(h.max_rent).toLocaleString() : '--');
+        html += detailItem('Payment Standard', h.voucher_payment_standard ? '$' + Number(h.voucher_payment_standard).toLocaleString() : '--');
+        html += detailItem('Members', h.household_members || '--');
+        html += detailItem('Voucher Expiration', formatDate(h.voucher_expiration));
+        html += detailItem('Elevator', h.elevator_required ? 'Yes' : 'No');
+        html += detailItem('Floor Pref', h.floor_preference || 'Any');
+        html += detailItem('Pets', h.pets || 'None');
+        html += detailItem('Timeline', h.move_in_timeline || '--');
+        html += detailItem('Neighborhoods', Array.isArray(h.preferred_neighborhoods) && h.preferred_neighborhoods.length ? h.preferred_neighborhoods.join(', ') : '--');
+        html += detailItem('Documents', Array.isArray(h.documents) && h.documents.length ? h.documents.join(', ') : '--');
+        html += detailItem('Readiness Flags', Array.isArray(h.readiness_flags) && h.readiness_flags.length ? h.readiness_flags.join(', ') : 'None');
+        html += `</div>`;
+
+        if (h.notes) {
+          html += `<div style="margin-top:12px;font-size:13px;color:var(--text-secondary);"><strong style="color:var(--text);">Notes:</strong> ${escapeHtml(h.notes)}</div>`;
+        }
+
+        html += `<div class="household-card-actions">`;
+        if (!summary) {
+          html += `<button class="btn-primary btn-small" onclick="event.stopPropagation();generateSummaryForHousehold('${h.id}')">Generate Summary</button>`;
+        }
+        html += `<button class="btn-secondary btn-small" onclick="event.stopPropagation();" disabled>Edit</button>`;
+        html += `</div>`;
+        html += `</div>`; // end details
+
+        html += `</div>`; // end card
+      });
+
+      container.innerHTML = html;
+    }
+
+    function detailItem(label, value) {
+      return `<div class="household-detail-item"><div class="detail-label">${label}</div><div class="detail-value">${escapeHtml(String(value || '--'))}</div></div>`;
+    }
+
+    function toggleHouseholdDetail(id) {
+      const el = document.getElementById('hh-detail-' + id);
+      if (el) el.classList.toggle('expanded');
+    }
+
+    async function generateSummaryForHousehold(id) {
+      const btn = event.target;
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+
+      try {
+        // Fetch the household data
+        const { data: household, error } = await supabase.from('households').select('*').eq('id', id).single();
+        if (error) throw error;
+
+        const response = await fetch('/api/generate-summary', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(household)
+        });
+
+        if (!response.ok) {
+          const err = await response.json();
+          throw new Error(err.error || 'Failed to generate summary');
+        }
+
+        const result = await response.json();
+        const summary = result.summary || result.text || '';
+
+        // Save the summary
+        const { error: updateErr } = await supabase.from('households').update({ summary }).eq('id', id);
+        if (updateErr) throw updateErr;
+
+        showToast('Summary generated');
+        loadHouseholds();
+      } catch (err) {
+        showToast('Error: ' + err.message, true);
+        btn.disabled = false;
+        btn.textContent = 'Generate Summary';
+      }
     }
 
     async function loadUnits() {
@@ -877,58 +2374,111 @@
     async function loadPipeline() {
       const { data, error } = await supabase
         .from('pipeline')
-        .select('id, stage, program, created_at, households(name), units(address, unit_number), landlord:profiles!pipeline_landlord_id_fkey(full_name), caseworker:profiles!pipeline_caseworker_id_fkey(full_name)')
+        .select('*, households(head_of_household, voucher_program, authorized_bedrooms), units(building_address, unit_number, monthly_rent, neighborhood), landlord:profiles!pipeline_landlord_id_fkey(full_name), caseworker:profiles!pipeline_caseworker_id_fkey(full_name)')
         .order('created_at', { ascending: false });
 
-      const tbody = document.getElementById('pipeline-tbody');
+      const container = document.getElementById('adminPipelineCards');
+      const emptyEl = document.getElementById('adminPipelineEmpty');
+      const loadingEl = document.getElementById('pipelineLoading');
+
+      if (loadingEl) loadingEl.style.display = 'none';
+
       if (error || !data) {
-        tbody.innerHTML = `<tr><td colspan="7" class="table-empty">Failed to load pipeline.</td></tr>`;
+        container.innerHTML = '<div class="admin-pipeline-empty">Failed to load pipeline.</div>';
+        emptyEl.style.display = 'none';
         return;
       }
       if (data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="table-empty">No pipeline entries.</td></tr>`;
+        container.innerHTML = '';
+        emptyEl.style.display = 'block';
         return;
       }
 
-      tbody.innerHTML = data.map(p => {
-        const unitLabel = p.units ? (p.units.address + (p.units.unit_number ? ' #' + p.units.unit_number : '')) : '--';
-        const stageOptions = PIPELINE_STAGES.map(s => `<option value="${s}" ${s === p.stage ? 'selected' : ''}>${s}</option>`).join('');
-        return `
-          <tr>
-            <td>${escapeHtml(p.households?.name) || '--'}</td>
-            <td>${escapeHtml(unitLabel)}</td>
-            <td>${escapeHtml(p.program) || '--'}</td>
-            <td>
-              <select class="stage-select" data-pipeline-id="${p.id}" onchange="updateStage(this)">
-                ${stageOptions}
-              </select>
-            </td>
-            <td>${escapeHtml(p.landlord?.full_name) || '--'}</td>
-            <td>${escapeHtml(p.caseworker?.full_name) || '--'}</td>
-            <td>${formatDate(p.created_at)}</td>
-          </tr>
-        `;
-      }).join('');
+      emptyEl.style.display = 'none';
+
+      let html = '';
+      data.forEach(p => {
+        const householdName = p.households ? p.households.head_of_household : 'Unknown';
+        const unitAddr = p.units ? p.units.building_address + (p.units.unit_number ? ', ' + p.units.unit_number : '') : 'Unknown';
+        const neighborhood = p.units ? p.units.neighborhood : '';
+        const program = p.households ? p.households.voucher_program : (p.program || '--');
+        const bedrooms = p.households && p.households.authorized_bedrooms != null
+          ? (p.households.authorized_bedrooms === 0 ? 'Studio' : p.households.authorized_bedrooms + 'BR')
+          : '--';
+        const rent = p.units && p.units.monthly_rent ? '$' + Number(p.units.monthly_rent).toLocaleString() + '/mo' : '--';
+        const stage = p.stage || 'Interview Requested';
+        const dateStr = p.created_at ? new Date(p.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '--';
+        const landlordName = p.landlord ? p.landlord.full_name : '--';
+        const caseworkerName = p.caseworker ? p.caseworker.full_name : '--';
+
+        const stageOptions = PIPELINE_STAGES.map(s =>
+          `<option value="${escapeHtml(s)}" ${s === stage ? 'selected' : ''}>${escapeHtml(s)}</option>`
+        ).join('');
+
+        html += `<div class="admin-pipeline-card">`;
+
+        // Header
+        html += `<div class="admin-pipeline-card-header">`;
+        html += `<div class="admin-pipeline-card-title">${escapeHtml(householdName)} &rarr; ${escapeHtml(unitAddr)}</div>`;
+        html += `<span class="admin-stage-badge ${adminGetStageBadgeClass(stage)}">${escapeHtml(stage)}</span>`;
+        html += `</div>`;
+        html += `<div class="admin-pipeline-card-sub">${escapeHtml(program)} &middot; ${bedrooms} &middot; ${rent}${neighborhood ? ' &middot; ' + escapeHtml(neighborhood) : ''}</div>`;
+
+        // People involved
+        html += `<div class="admin-pipeline-meta">`;
+        html += `<span><strong>Landlord:</strong> ${escapeHtml(landlordName)}</span>`;
+        html += `<span><strong>Caseworker:</strong> ${escapeHtml(caseworkerName)}</span>`;
+        html += `<span><strong>Added:</strong> ${dateStr}</span>`;
+        html += `</div>`;
+
+        // Stage progress bar
+        html += adminRenderStageProgress(stage);
+
+        // Stage change control
+        html += `<div class="admin-pipeline-controls">`;
+        html += `<label style="font-size:12px;font-weight:600;color:var(--text-secondary);">Change stage:</label>`;
+        html += `<select class="admin-stage-select" onchange="adminChangeStage('${p.id}', this.value)">${stageOptions}</select>`;
+        html += `</div>`;
+
+        // Closing checklist
+        html += `<div class="admin-checklist">`;
+        html += `<div class="admin-checklist-title">Closing Checklist</div>`;
+        ADMIN_CHECKLIST_FIELDS.forEach(item => {
+          const isChecked = p[item.key] === true;
+          html += `<div class="admin-checklist-item ${isChecked ? 'checked' : ''}" onclick="this.classList.toggle('checked');adminToggleChecklist('${p.id}','${item.key}',this.classList.contains('checked'))">`;
+          html += `<span class="check-icon">${isChecked ? '\u2713' : ''}</span>`;
+          html += `<span>${item.label}</span>`;
+          html += `</div>`;
+        });
+        html += `</div>`;
+
+        // Notes form
+        html += `<div class="admin-notes-form">`;
+        html += `<textarea id="admin-note-${p.id}" placeholder="Add a note..."></textarea>`;
+        html += `<button class="admin-btn-note" onclick="adminAddNote('${p.id}')">Add Note</button>`;
+        html += `</div>`;
+
+        // Activity timeline
+        html += `<div class="admin-activity">`;
+        html += `<div class="admin-activity-title">Activity</div>`;
+        if (p.notes) {
+          const noteLines = p.notes.split('\n').filter(l => l.trim());
+          noteLines.forEach(line => {
+            html += `<div class="admin-activity-item"><span>${escapeHtml(line)}</span></div>`;
+          });
+        }
+        html += `<div class="admin-activity-item"><span class="activity-date">${dateStr}</span> <span>Added to pipeline</span></div>`;
+        html += `</div>`;
+
+        html += `</div>`;
+      });
+
+      container.innerHTML = html;
     }
 
     /* ═══════════════════════════════════════
        ACTIONS
        ═══════════════════════════════════════ */
-
-    async function updateStage(selectEl) {
-      const pipelineId = selectEl.dataset.pipelineId;
-      const stage = selectEl.value;
-      const { error } = await supabase
-        .from('pipeline')
-        .update({ stage })
-        .eq('id', pipelineId);
-
-      if (error) {
-        showToast('Failed to update stage: ' + error.message, true);
-      } else {
-        showToast('Stage updated to ' + stage);
-      }
-    }
 
     // Add Organization
     document.getElementById('addOrgForm').addEventListener('submit', async (e) => {
@@ -998,6 +2548,543 @@
     });
 
     /* ═══════════════════════════════════════
+       ADD HOUSEHOLD — CONSTANTS & STATE
+       ═══════════════════════════════════════ */
+    const ALL_DOCS = ['Valid ID', 'Proof of Income', 'Voucher Letter', 'Background Check', 'Credit Report', 'Housing History', 'Program Approval Letter'];
+    const NEIGHBORHOODS = ['Upper West Side', 'Long Island City', 'Greenpoint', 'Greenwich Village', 'East Village', 'Williamsburg', 'Brooklyn Heights', 'Park Slope', 'Astoria', 'Harlem', 'Washington Heights', 'Inwood', 'South Bronx', 'Flatbush'];
+
+    let adminCaseworkers = [];
+    let adminSelectedNeighborhoods = [];
+    let adminChatData = {};
+    let adminChatStep = 0;
+    let adminChatMultiSelections = [];
+
+    const ADMIN_CHAT_STEPS = [
+      { key: 'voucher_program', question: "What voucher program is this household on?", type: 'options', options: ['CityFHEPS', 'FHEPS', 'Section 8/HCV', 'HASA', 'SOTA', 'HPD', 'Other'] },
+      { key: 'voucher_status', question: "Is the voucher currently active?", type: 'options', options: ['Active', 'Expired', 'Pending Renewal'] },
+      { key: 'authorized_bedrooms', question: "What bedroom size is authorized?", type: 'options', options: ['Studio', '1BR', '2BR', '3BR', '4BR'] },
+      { key: 'head_of_household', question: "What's the head of household's full name?", type: 'text', placeholder: 'Full name' },
+      { key: 'household_members', question: "How many people are in the household?", type: 'options', options: ['1', '2', '3', '4', '5', '6+'] },
+      { key: 'employment_status', question: "What's their employment status?", type: 'options', options: ['Employed', 'Unemployed', 'SSI/SSDI', 'Other'] },
+      { key: 'monthly_income', question: "What's the monthly income? (Enter dollar amount)", type: 'text', placeholder: 'e.g. 2100', inputType: 'number' },
+      { key: 'tenant_contribution', question: "What's the anticipated tenant contribution?", type: 'text', placeholder: 'e.g. 450', inputType: 'number' },
+      { key: 'max_rent', question: "What's the maximum rent allowed?", type: 'text', placeholder: 'e.g. 2217', inputType: 'number' },
+      { key: 'documents', question: "Which documents are ready? (Select all that apply, then tap Done)", type: 'multi', options: ALL_DOCS },
+      { key: 'preferred_neighborhoods', question: "Any preferred neighborhoods? (Select all that apply, then tap Done)", type: 'multi', options: NEIGHBORHOODS },
+      { key: 'move_in_timeline', question: "When can they move in?", type: 'options', options: ['Immediate', 'Within 30 days', 'Within 60 days', 'Flexible'] },
+      { key: 'elevator_required', question: "Does the household need an elevator building?", type: 'options', options: ['Yes', 'No'] },
+      { key: 'pets', question: "Any pets?", type: 'options', options: ['None', 'Cat', 'Dog', 'Other'] },
+      { key: 'voucher_payment_standard', question: "What's the voucher payment standard? (Max the program will pay)", type: 'text', placeholder: 'e.g. 2217', inputType: 'number' }
+    ];
+
+    /* ═══════════════════════════════════════
+       ADD HOUSEHOLD — CASEWORKER LOADING
+       ═══════════════════════════════════════ */
+    async function loadCaseworkers() {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, full_name, email, organization_id, organizations(name)')
+        .eq('role', 'caseworker');
+
+      if (error || !data) return;
+      adminCaseworkers = data;
+
+      const sel = document.getElementById('af-caseworker');
+      sel.innerHTML = '<option value="">Select caseworker...</option>' +
+        data.map(cw => `<option value="${cw.id}">${escapeHtml(cw.full_name || cw.email)} (${escapeHtml(cw.organizations?.name || 'No org')})</option>`).join('');
+    }
+
+    // Auto-fill org when caseworker changes
+    document.getElementById('af-caseworker').addEventListener('change', function() {
+      const cw = adminCaseworkers.find(c => c.id === this.value);
+      const orgDisplay = document.getElementById('af-orgDisplay');
+      if (cw && cw.organizations) {
+        orgDisplay.textContent = cw.organizations.name;
+      } else {
+        orgDisplay.textContent = cw ? 'No organization' : 'Select a caseworker first';
+      }
+    });
+
+    /* ═══════════════════════════════════════
+       ADD HOUSEHOLD — NEIGHBORHOODS
+       ═══════════════════════════════════════ */
+    function renderAdminNeighborhoodTags() {
+      const container = document.getElementById('adminNeighborhoodTags');
+      container.innerHTML = NEIGHBORHOODS.map(n => {
+        const selected = adminSelectedNeighborhoods.includes(n) ? ' selected' : '';
+        return `<span class="tag-pill${selected}" onclick="toggleAdminNeighborhood('${n}', this)">${n}</span>`;
+      }).join('');
+    }
+
+    function toggleAdminNeighborhood(name, el) {
+      const idx = adminSelectedNeighborhoods.indexOf(name);
+      if (idx > -1) {
+        adminSelectedNeighborhoods.splice(idx, 1);
+        el.classList.remove('selected');
+      } else {
+        adminSelectedNeighborhoods.push(name);
+        el.classList.add('selected');
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       ADD HOUSEHOLD — MODE SWITCHING
+       ═══════════════════════════════════════ */
+    function adminShowModeSelect() {
+      document.querySelectorAll('#tab-add-household .admin-add-state').forEach(s => s.classList.remove('active'));
+      document.getElementById('adminModeSelect').classList.add('active');
+    }
+
+    function adminShowDropzone() {
+      document.querySelectorAll('#tab-add-household .admin-add-state').forEach(s => s.classList.remove('active'));
+      document.getElementById('adminDropzoneView').classList.add('active');
+    }
+
+    function adminShowForm() {
+      document.querySelectorAll('#tab-add-household .admin-add-state').forEach(s => s.classList.remove('active'));
+      document.getElementById('adminReviewForm').classList.add('active');
+      document.getElementById('adminExtractedBanner').style.display = 'none';
+    }
+
+    function adminShowReviewFromPDF() {
+      document.querySelectorAll('#tab-add-household .admin-add-state').forEach(s => s.classList.remove('active'));
+      document.getElementById('adminReviewForm').classList.add('active');
+      document.getElementById('adminExtractedBanner').style.display = 'flex';
+    }
+
+    function adminShowReviewFromChat() {
+      document.querySelectorAll('#tab-add-household .admin-add-state').forEach(s => s.classList.remove('active'));
+      document.getElementById('adminReviewForm').classList.add('active');
+      document.getElementById('adminExtractedBanner').style.display = 'flex';
+      document.querySelector('#adminExtractedBanner').innerHTML = '<span style="font-size:16px;">&#10003;</span> Conversation complete -- review and submit below';
+      adminFillFormFromChatData();
+    }
+
+    /* ═══════════════════════════════════════
+       ADD HOUSEHOLD — DRAG & DROP / PDF
+       ═══════════════════════════════════════ */
+    function adminHandleFileSelect(event) {
+      const file = event.target.files[0];
+      if (file) adminProcessVoucherPDF(file);
+    }
+
+    async function adminProcessVoucherPDF(file) {
+      try {
+        const base64 = await adminFileToBase64(file);
+        const response = await fetch('/api/extract-voucher', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pdf: base64 })
+        });
+
+        if (!response.ok) {
+          const err = await response.json();
+          throw new Error(err.error || 'Extraction failed');
+        }
+
+        const data = await response.json();
+        adminFillFormFromExtraction(data);
+        adminShowReviewFromPDF();
+      } catch (err) {
+        showToast('Error: ' + err.message, true);
+      }
+    }
+
+    function adminFileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function adminFillFormFromExtraction(data) {
+      const fieldMap = {
+        voucher_program: 'af-program',
+        voucher_status: 'af-voucherStatus',
+        authorized_bedrooms: 'af-bedroomSize',
+        voucher_expiration: 'af-expirationDate',
+        head_of_household: 'af-name',
+        household_members: 'af-members',
+        monthly_income: 'af-income',
+        ssi_ssdi_amount: 'af-ssi',
+        tenant_contribution: 'af-tenantContribution',
+        max_rent: 'af-maxRent',
+        employment_status: 'af-employment',
+        notes: 'af-notes',
+        floor_preference: 'af-floorPref',
+        pets: 'af-pets',
+        voucher_payment_standard: 'af-paymentStandard'
+      };
+
+      for (const [key, id] of Object.entries(fieldMap)) {
+        if (data[key] !== undefined && data[key] !== null) {
+          const el = document.getElementById(id);
+          if (el) {
+            if (el.tagName === 'SELECT') {
+              const options = Array.from(el.options);
+              const match = options.find(o =>
+                o.value.toLowerCase().includes(String(data[key]).toLowerCase()) ||
+                String(data[key]).toLowerCase().includes(o.value.toLowerCase())
+              );
+              if (match) el.value = match.value;
+            } else {
+              el.value = data[key];
+            }
+          }
+        }
+      }
+
+      if (data.elevator_required) {
+        const el = document.getElementById('af-elevator');
+        if (el) el.checked = data.elevator_required === true || data.elevator_required === 'Yes';
+      }
+    }
+
+    // Dropzone drag events
+    (function() {
+      const dz = document.getElementById('adminDropzone');
+      if (!dz) return;
+      ['dragenter', 'dragover'].forEach(ev => {
+        dz.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dz.classList.add('dragover'); });
+      });
+      ['dragleave', 'drop'].forEach(ev => {
+        dz.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dz.classList.remove('dragover'); });
+      });
+      dz.addEventListener('drop', e => {
+        const file = e.dataTransfer.files[0];
+        if (file && file.type === 'application/pdf') adminProcessVoucherPDF(file);
+        else showToast('Please drop a PDF file', true);
+      });
+    })();
+
+    /* ═══════════════════════════════════════
+       ADD HOUSEHOLD — CHAT MODE
+       ═══════════════════════════════════════ */
+    function adminStartChat() {
+      adminChatData = {};
+      adminChatStep = 0;
+      adminChatMultiSelections = [];
+      document.getElementById('adminChatMessages').innerHTML = '';
+
+      document.querySelectorAll('#tab-add-household .admin-add-state').forEach(s => s.classList.remove('active'));
+      document.getElementById('adminChatView').classList.add('active');
+
+      adminAddChatBubble('system', "Let's add a new household. I'll ask you a few quick questions.");
+      setTimeout(() => adminShowChatStep(0), 600);
+    }
+
+    function adminShowChatStep(stepIndex) {
+      if (stepIndex >= ADMIN_CHAT_STEPS.length) {
+        adminAddChatBubble('system', "That's everything! Let's review the information.");
+        const reviewBtn = document.createElement('button');
+        reviewBtn.className = 'admin-chat-review-btn';
+        reviewBtn.textContent = 'Review & Submit';
+        reviewBtn.onclick = adminShowReviewFromChat;
+        document.getElementById('adminChatMessages').appendChild(reviewBtn);
+        adminScrollChatToBottom();
+        return;
+      }
+
+      adminChatStep = stepIndex;
+      const step = ADMIN_CHAT_STEPS[stepIndex];
+      adminUpdateChatProgress(stepIndex);
+      adminAddChatBubble('system', step.question);
+
+      if (step.type === 'options') {
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'admin-chat-options';
+        optionsDiv.id = 'adminChatCurrentOptions';
+        step.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'admin-chat-option-btn';
+          btn.textContent = opt;
+          btn.onclick = () => adminSelectChatOption(opt);
+          optionsDiv.appendChild(btn);
+        });
+        document.getElementById('adminChatMessages').appendChild(optionsDiv);
+      } else if (step.type === 'multi') {
+        adminChatMultiSelections = [];
+        const multiDiv = document.createElement('div');
+        multiDiv.className = 'admin-chat-multi-select';
+        multiDiv.id = 'adminChatCurrentOptions';
+        step.options.forEach(opt => {
+          const chip = document.createElement('button');
+          chip.className = 'admin-chat-chip';
+          chip.textContent = opt;
+          chip.onclick = () => { const idx = adminChatMultiSelections.indexOf(opt); if (idx > -1) { adminChatMultiSelections.splice(idx, 1); chip.classList.remove('selected'); } else { adminChatMultiSelections.push(opt); chip.classList.add('selected'); } };
+          multiDiv.appendChild(chip);
+        });
+        const doneBtn = document.createElement('button');
+        doneBtn.className = 'admin-chat-multi-done';
+        doneBtn.textContent = 'Done';
+        doneBtn.onclick = () => adminConfirmMultiSelect();
+        multiDiv.appendChild(doneBtn);
+        document.getElementById('adminChatMessages').appendChild(multiDiv);
+      } else if (step.type === 'text') {
+        const input = document.getElementById('adminChatInput');
+        input.placeholder = step.placeholder || 'Type your answer...';
+        input.type = step.inputType || 'text';
+        input.value = '';
+        input.focus();
+      }
+
+      adminScrollChatToBottom();
+    }
+
+    function adminSelectChatOption(value) {
+      const step = ADMIN_CHAT_STEPS[adminChatStep];
+      adminChatData[step.key] = value;
+      const opts = document.getElementById('adminChatCurrentOptions');
+      if (opts) opts.remove();
+      adminAddChatBubble('user', value);
+      setTimeout(() => adminShowChatStep(adminChatStep + 1), 400);
+    }
+
+    function adminConfirmMultiSelect() {
+      const step = ADMIN_CHAT_STEPS[adminChatStep];
+      adminChatData[step.key] = [...adminChatMultiSelections];
+      const opts = document.getElementById('adminChatCurrentOptions');
+      if (opts) opts.remove();
+      const display = adminChatMultiSelections.length > 0 ? adminChatMultiSelections.join(', ') : 'None selected';
+      adminAddChatBubble('user', display);
+      adminChatMultiSelections = [];
+      setTimeout(() => adminShowChatStep(adminChatStep + 1), 400);
+    }
+
+    function adminHandleChatInput() {
+      const input = document.getElementById('adminChatInput');
+      const value = input.value.trim();
+      if (!value) return;
+      const step = ADMIN_CHAT_STEPS[adminChatStep];
+
+      if (step.type === 'options') {
+        const match = step.options.find(o => o.toLowerCase() === value.toLowerCase());
+        adminChatData[step.key] = match || value;
+        const opts = document.getElementById('adminChatCurrentOptions');
+        if (opts) opts.remove();
+        adminAddChatBubble('user', match || value);
+      } else if (step.type === 'multi') {
+        adminChatData[step.key] = [value];
+        const opts = document.getElementById('adminChatCurrentOptions');
+        if (opts) opts.remove();
+        adminAddChatBubble('user', value);
+      } else {
+        adminChatData[step.key] = step.inputType === 'number' ? parseInt(value) || 0 : value;
+        const display = step.inputType === 'number' ? '$' + Number(value).toLocaleString() : value;
+        adminAddChatBubble('user', display);
+      }
+
+      input.value = '';
+      setTimeout(() => adminShowChatStep(adminChatStep + 1), 400);
+    }
+
+    function adminChatGoBack() {
+      if (adminChatStep <= 0) { adminShowModeSelect(); return; }
+      const msgs = document.getElementById('adminChatMessages');
+      let removed = 0;
+      while (msgs.lastChild && removed < 3) {
+        const last = msgs.lastChild;
+        msgs.removeChild(last);
+        removed++;
+        if (last.classList && last.classList.contains('system')) break;
+      }
+      const opts = document.getElementById('adminChatCurrentOptions');
+      if (opts) opts.remove();
+      delete adminChatData[ADMIN_CHAT_STEPS[adminChatStep].key];
+      if (adminChatStep > 0) { adminChatStep--; delete adminChatData[ADMIN_CHAT_STEPS[adminChatStep].key]; }
+      adminShowChatStep(adminChatStep);
+    }
+
+    function adminAddChatBubble(type, text) {
+      const bubble = document.createElement('div');
+      bubble.className = 'admin-chat-bubble ' + type;
+      bubble.textContent = text;
+      document.getElementById('adminChatMessages').appendChild(bubble);
+      adminScrollChatToBottom();
+    }
+
+    function adminUpdateChatProgress(step) {
+      const total = ADMIN_CHAT_STEPS.length;
+      const pct = Math.round((step / total) * 100);
+      document.getElementById('adminChatProgressFill').style.width = pct + '%';
+      document.getElementById('adminChatProgressText').textContent = step + ' / ' + total;
+    }
+
+    function adminScrollChatToBottom() {
+      const msgs = document.getElementById('adminChatMessages');
+      setTimeout(() => { msgs.scrollTop = msgs.scrollHeight; }, 50);
+    }
+
+    function adminFillFormFromChatData() {
+      const d = adminChatData;
+      if (d.voucher_program) { const el = document.getElementById('af-program'); if (el) el.value = d.voucher_program; }
+      if (d.voucher_status) { const el = document.getElementById('af-voucherStatus'); if (el) el.value = d.voucher_status; }
+      if (d.authorized_bedrooms) { const el = document.getElementById('af-bedroomSize'); if (el) el.value = d.authorized_bedrooms; }
+      if (d.head_of_household) { const el = document.getElementById('af-name'); if (el) el.value = d.head_of_household; }
+      if (d.household_members) { const el = document.getElementById('af-members'); if (el) el.value = d.household_members === '6+' ? 6 : d.household_members; }
+      if (d.employment_status) { const el = document.getElementById('af-employment'); if (el) el.value = d.employment_status; }
+      if (d.monthly_income !== undefined) { const el = document.getElementById('af-income'); if (el) el.value = d.monthly_income; }
+      if (d.tenant_contribution !== undefined) { const el = document.getElementById('af-tenantContribution'); if (el) el.value = d.tenant_contribution; }
+      if (d.max_rent !== undefined) { const el = document.getElementById('af-maxRent'); if (el) el.value = d.max_rent; }
+      if (d.voucher_payment_standard !== undefined) { const el = document.getElementById('af-paymentStandard'); if (el) el.value = d.voucher_payment_standard; }
+      if (d.elevator_required) { const el = document.getElementById('af-elevator'); if (el) el.checked = d.elevator_required === 'Yes'; }
+      if (d.pets) { const el = document.getElementById('af-pets'); if (el) el.value = d.pets; }
+      if (d.move_in_timeline) { const el = document.getElementById('af-timeline'); if (el) el.value = d.move_in_timeline; }
+
+      // Documents
+      if (d.documents && d.documents.length > 0) {
+        const docMap = { 'Valid ID': 'af-doc-id', 'Proof of Income': 'af-doc-income', 'Voucher Letter': 'af-doc-voucher', 'Background Check': 'af-doc-background', 'Credit Report': 'af-doc-credit', 'Housing History': 'af-doc-housing', 'Program Approval Letter': 'af-doc-approval' };
+        d.documents.forEach(doc => { const id = docMap[doc]; if (id) document.getElementById(id).checked = true; });
+      }
+
+      // Neighborhoods
+      if (d.preferred_neighborhoods && d.preferred_neighborhoods.length > 0) {
+        adminSelectedNeighborhoods = [...d.preferred_neighborhoods];
+        renderAdminNeighborhoodTags();
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       ADD HOUSEHOLD — GENERATE SUMMARY
+       ═══════════════════════════════════════ */
+    async function adminGenerateSummary() {
+      const btn = document.getElementById('adminGenerateSummaryBtn');
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+
+      try {
+        const formData = adminGatherFormData();
+        const response = await fetch('/api/generate-summary', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+          const err = await response.json();
+          throw new Error(err.error || 'Failed to generate summary');
+        }
+
+        const result = await response.json();
+        const summary = result.summary || result.text || '';
+
+        document.getElementById('af-summary').value = summary;
+        document.getElementById('adminSummaryPreview').style.display = 'block';
+        showToast('Summary generated -- review and edit before submitting');
+      } catch (err) {
+        showToast('Error: ' + err.message, true);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Generate Summary';
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       ADD HOUSEHOLD — SUBMIT
+       ═══════════════════════════════════════ */
+    function adminGatherFormData() {
+      const docs = [];
+      if (document.getElementById('af-doc-id').checked) docs.push('Valid ID');
+      if (document.getElementById('af-doc-income').checked) docs.push('Proof of Income');
+      if (document.getElementById('af-doc-voucher').checked) docs.push('Voucher Letter');
+      if (document.getElementById('af-doc-background').checked) docs.push('Background Check');
+      if (document.getElementById('af-doc-credit').checked) docs.push('Credit Report');
+      if (document.getElementById('af-doc-housing').checked) docs.push('Housing History');
+      if (document.getElementById('af-doc-approval').checked) docs.push('Program Approval Letter');
+
+      return {
+        head_of_household: document.getElementById('af-name').value,
+        voucher_program: document.getElementById('af-program').value,
+        authorized_bedrooms: document.getElementById('af-bedroomSize').value,
+        voucher_status: document.getElementById('af-voucherStatus').value,
+        voucher_expiration: document.getElementById('af-expirationDate').value || null,
+        household_members: parseInt(document.getElementById('af-members').value) || 1,
+        employment_status: document.getElementById('af-employment').value,
+        monthly_income: parseInt(document.getElementById('af-income').value) || 0,
+        ssi_ssdi_amount: parseInt(document.getElementById('af-ssi').value) || 0,
+        tenant_contribution: parseInt(document.getElementById('af-tenantContribution').value) || 0,
+        max_rent: parseInt(document.getElementById('af-maxRent').value) || 0,
+        voucher_payment_standard: parseInt(document.getElementById('af-paymentStandard').value) || 0,
+        documents: docs,
+        elevator_required: document.getElementById('af-elevator').checked,
+        floor_preference: document.getElementById('af-floorPref').value || null,
+        pets: document.getElementById('af-pets').value,
+        preferred_neighborhoods: [...adminSelectedNeighborhoods],
+        move_in_timeline: document.getElementById('af-timeline').value,
+        accessibility_needed: document.getElementById('af-accessibilityCheck').checked,
+        accessibility_notes: document.getElementById('af-accessibilityText').value,
+        notes: document.getElementById('af-notes').value,
+        readiness_flags: Array.from(document.querySelectorAll('#adminReadinessFlagsGrid input:checked')).map(cb => cb.value)
+      };
+    }
+
+    async function adminHandleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('adminSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+
+      const caseworkerId = document.getElementById('af-caseworker').value;
+      if (!caseworkerId) {
+        showToast('Please select a caseworker', true);
+        btn.disabled = false;
+        btn.textContent = 'Add Household';
+        return;
+      }
+
+      const cw = adminCaseworkers.find(c => c.id === caseworkerId);
+      const orgId = cw ? cw.organization_id : null;
+
+      const formData = adminGatherFormData();
+
+      const voucherStatus = formData.voucher_status;
+      const docsComplete = formData.documents.length === ALL_DOCS.length;
+      const voucherActive = voucherStatus === 'Active';
+      let stage = 'Incomplete';
+      if (docsComplete && voucherActive) stage = 'Ready';
+      else if (formData.documents.length >= 3) stage = 'Pending';
+
+      const summary = document.getElementById('af-summary').value.trim();
+
+      const insertData = {
+        ...formData,
+        caseworker_id: caseworkerId,
+        organization_id: orgId,
+        inputted_by: window.currentUser.id,
+        stage: stage
+      };
+
+      if (summary) insertData.summary = summary;
+
+      const { error } = await supabase.from('households').insert(insertData);
+
+      if (error) {
+        showToast('Error: ' + error.message, true);
+        btn.disabled = false;
+        btn.textContent = 'Add Household';
+        return;
+      }
+
+      showToast('Household added successfully');
+      // Reset form
+      document.getElementById('adminAddHouseholdForm').reset();
+      adminSelectedNeighborhoods = [];
+      renderAdminNeighborhoodTags();
+      document.getElementById('adminSummaryPreview').style.display = 'none';
+      document.getElementById('af-orgDisplay').textContent = 'Select a caseworker first';
+      adminShowModeSelect();
+
+      // Refresh households
+      loadHouseholds();
+      loadOverview();
+
+      btn.disabled = false;
+      btn.textContent = 'Add Household';
+    }
+
+    /* ═══════════════════════════════════════
        INIT
        ═══════════════════════════════════════ */
     (async function init() {
@@ -1013,6 +3100,9 @@
         .slice(0, 2);
       document.getElementById('userAvatar').textContent = initials || '--';
 
+      // Render neighborhood tags
+      renderAdminNeighborhoodTags();
+
       // Load all data in parallel
       await Promise.all([
         loadOverview(),
@@ -1022,6 +3112,7 @@
         loadHouseholds(),
         loadUnits(),
         loadPipeline(),
+        loadCaseworkers(),
       ]);
     })();
   </script>

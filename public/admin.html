@@ -24,6 +24,13 @@
       --amber-soft: rgba(196,131,10,.10);
       --coral: #d4644a;
       --coral-soft: rgba(212,100,74,.10);
+      --blue: #3b82f6;
+      --blue-soft: rgba(59,130,246,.10);
+      --teal: #0d9488;
+      --teal-soft: rgba(20,184,166,.10);
+      --gray: #6b7280;
+      --gray-soft: rgba(107,114,128,.10);
+      --bg-warm: #f5f1ec;
       --font-sans: 'Inter', -apple-system, sans-serif;
       --font-serif: 'DM Serif Display', Georgia, serif;
       --radius-sm: 8px;
@@ -417,300 +424,259 @@
       margin-bottom: 16px;
     }
 
-    /* ── ADMIN PIPELINE CARDS ── */
-    .admin-pipeline-card {
+    /* ── PIPELINE LIST (compact Kanban rows) ── */
+    .pipeline-list {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      margin-bottom: 16px;
-      transition: box-shadow .15s;
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    .admin-pipeline-card:hover {
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-    }
-
-    .admin-pipeline-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 4px;
-    }
-
-    .admin-pipeline-card-title {
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    .admin-pipeline-card-sub {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .admin-pipeline-meta {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    .admin-pipeline-meta strong {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    /* Stage badge colors */
-    .admin-stage-badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .admin-stage-badge.stage-interview { background: rgba(99,102,241,.10); color: #6366f1; }
-    .admin-stage-badge.stage-selected { background: var(--green-soft); color: var(--forest); }
-    .admin-stage-badge.stage-confirming { background: rgba(59,130,246,.10); color: #3b82f6; }
-    .admin-stage-badge.stage-submission { background: var(--amber-soft); color: var(--amber); }
-    .admin-stage-badge.stage-inspection { background: rgba(168,85,247,.10); color: #a855f7; }
-    .admin-stage-badge.stage-inspection-passed { background: var(--green-soft); color: var(--forest); }
-    .admin-stage-badge.stage-inspection-failed { background: var(--coral-soft); color: var(--coral); }
-    .admin-stage-badge.stage-approval { background: rgba(20,184,166,.10); color: #0d9488; }
-    .admin-stage-badge.stage-approved { background: var(--green-soft); color: var(--forest); }
-    .admin-stage-badge.stage-signing { background: var(--amber-soft); color: var(--amber); }
-    .admin-stage-badge.stage-signed { background: var(--forest-light); color: var(--forest-dark); }
-    .admin-stage-badge.stage-aftercare { background: var(--coral-soft); color: var(--coral); }
-
-    /* Stage progress bar */
-    .admin-stage-progress {
+    .pipeline-row {
       display: flex;
       align-items: center;
-      gap: 0;
-      margin-bottom: 20px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .admin-stage-step {
-      flex: 1;
-      min-width: 0;
-      text-align: center;
-      position: relative;
-    }
-
-    .admin-stage-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border-strong);
-      margin: 0 auto 4px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .admin-stage-step.completed .admin-stage-dot {
-      background: var(--forest);
-    }
-
-    .admin-stage-step.current .admin-stage-dot {
-      background: var(--forest);
-      box-shadow: 0 0 0 3px var(--forest-soft);
-    }
-
-    .admin-stage-label {
-      font-size: 8px;
-      font-weight: 600;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .admin-stage-step.completed .admin-stage-label,
-    .admin-stage-step.current .admin-stage-label {
-      color: var(--forest);
-    }
-
-    .admin-stage-line {
-      position: absolute;
-      top: 5px;
-      left: 50%;
-      right: -50%;
-      height: 2px;
-      background: var(--border-strong);
-      z-index: 0;
-    }
-
-    .admin-stage-step.completed .admin-stage-line {
-      background: var(--forest);
-    }
-
-    .admin-stage-step:last-child .admin-stage-line {
-      display: none;
-    }
-
-    /* Stage select dropdown */
-    .admin-stage-select {
-      padding: 6px 10px;
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      font-weight: 500;
-      font-family: var(--font-sans);
-      background: var(--bg);
-      color: var(--text);
+      gap: 14px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
       cursor: pointer;
-      outline: none;
-      transition: border-color .15s;
+      transition: background .1s;
     }
 
-    .admin-stage-select:focus {
-      border-color: var(--forest);
+    .pipeline-row:last-child { border-bottom: none; }
+    .pipeline-row:hover { background: var(--bg); }
+
+    .pipeline-row-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--forest-light);
+      color: var(--forest);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+      flex-shrink: 0;
     }
 
-    /* Closing checklist */
-    .admin-checklist {
+    .pipeline-row-main { flex: 1; min-width: 0; }
+    .pipeline-row-top { display: flex; align-items: center; gap: 10px; margin-bottom: 3px; }
+    .pipeline-row-name { font-weight: 700; font-size: 14px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pipeline-row-stage { padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+    .pipeline-row-bottom { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+    /* Compact dots */
+    .pipeline-row-dots { display: flex; gap: 4px; align-items: center; flex-shrink: 0; }
+    .pipeline-row-dots .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .pipeline-row-dots .dot.done { background: var(--forest); }
+    .pipeline-row-dots .dot.current { background: var(--forest); width: 16px; border-radius: 4px; }
+    .pipeline-row-dots .dot.upcoming { background: var(--bg-warm); border: 1px solid var(--border); }
+
+    /* Compact checklist icons */
+    .pipeline-row-checks { display: flex; gap: 4px; flex-shrink: 0; }
+    .pipeline-row-checks .check-dot { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; }
+    .pipeline-row-checks .check-dot.done { background: var(--green-soft); color: var(--forest); }
+    .pipeline-row-checks .check-dot.pending { background: var(--bg-warm); color: var(--text-muted); border: 1px solid var(--border); }
+
+    .pipeline-row-manage {
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: all .15s;
+      flex-shrink: 0;
+    }
+
+    .pipeline-row-manage:hover { border-color: var(--forest); color: var(--forest); }
+
+    /* Expanded management panel */
+    .pipeline-manage-panel {
+      display: none;
+      padding: 20px 24px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pipeline-manage-panel.active { display: block; }
+
+    .manage-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 16px;
     }
 
-    .admin-checklist-title {
+    .manage-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .manage-close {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--text-muted);
+    }
+
+    .manage-close:hover { border-color: var(--forest); color: var(--forest); }
+
+    .manage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .manage-section-title {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--forest);
       margin-bottom: 8px;
     }
 
-    .admin-checklist-item {
+    /* Stage controls in panel */
+    .manage-stage-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .manage-stage-select {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text);
+      background: white;
+      outline: none;
+      flex: 1;
+    }
+
+    .manage-stage-select:focus { border-color: var(--forest); }
+
+    .manage-stage-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all .15s;
+      color: var(--text-secondary);
+    }
+
+    .manage-stage-btn:hover { border-color: var(--forest); color: var(--forest); }
+    .manage-stage-btn:disabled { opacity: .35; cursor: not-allowed; }
+
+    /* Checklist in panel */
+    .manage-checklist-item {
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 6px 0;
       font-size: 13px;
-      color: var(--text-secondary);
       cursor: pointer;
+      color: var(--text-secondary);
       user-select: none;
     }
 
-    .admin-checklist-item:hover {
-      color: var(--text);
-    }
+    .manage-checklist-item:hover { color: var(--text); }
 
-    .admin-checklist-item .check-icon {
-      width: 18px;
-      height: 18px;
+    .manage-checklist-item.checked { color: var(--forest); }
+
+    .manage-check-icon {
+      width: 20px; height: 20px;
       border-radius: 50%;
-      border: 2px solid var(--border-strong);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
       flex-shrink: 0;
-      font-size: 10px;
       transition: all .15s;
     }
 
-    .admin-checklist-item.checked .check-icon {
+    .manage-checklist-item.checked .manage-check-icon {
       background: var(--forest);
       border-color: var(--forest);
       color: white;
     }
 
-    .admin-checklist-item.checked {
-      color: var(--text-muted);
-      text-decoration: line-through;
-    }
-
-    /* Notes form */
-    .admin-notes-form {
-      margin-top: 12px;
-    }
-
-    .admin-notes-form textarea {
+    /* Notes in panel */
+    .manage-notes { margin-top: 16px; }
+    .manage-notes textarea {
       width: 100%;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
+      border-radius: 8px;
       font-size: 13px;
-      font-family: var(--font-sans);
+      font-family: inherit;
       color: var(--text);
-      background: var(--bg);
       resize: vertical;
       min-height: 60px;
+      margin-bottom: 8px;
       outline: none;
+      background: white;
     }
 
-    .admin-notes-form textarea:focus {
-      border-color: var(--forest);
-      box-shadow: 0 0 0 3px var(--forest-soft);
-    }
+    .manage-notes textarea:focus { border-color: var(--forest); }
 
-    .admin-btn-note {
-      margin-top: 6px;
+    .manage-note-btn {
       padding: 6px 14px;
       background: var(--forest);
       color: white;
       border: none;
-      border-radius: var(--radius-sm);
+      border-radius: 6px;
       font-size: 12px;
       font-weight: 600;
-      font-family: var(--font-sans);
       cursor: pointer;
-      transition: background .15s;
+      font-family: inherit;
     }
 
-    .admin-btn-note:hover { background: var(--forest-dark); }
+    .manage-note-btn:hover { background: var(--forest-dark); }
 
-    /* Activity timeline */
-    .admin-activity {
-      margin-top: 16px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    .admin-activity-title {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .admin-activity-item {
-      display: flex;
-      gap: 8px;
+    /* Activity in panel */
+    .manage-activity { margin-top: 16px; }
+    .manage-activity-item {
       font-size: 12px;
       color: var(--text-secondary);
-      padding: 3px 0;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border);
     }
+    .manage-activity-item:last-child { border-bottom: none; }
 
-    .admin-activity-item .activity-date {
-      color: var(--text-muted);
-      flex-shrink: 0;
-      font-weight: 500;
-    }
-
-    .admin-pipeline-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
+    /* Stage badge colors */
+    .stage-interview { background: var(--blue-soft); color: var(--blue); }
+    .stage-verification { background: var(--amber-soft); color: var(--amber); }
+    .stage-submitted { background: var(--teal-soft); color: var(--teal); }
+    .stage-inspection { background: var(--amber-soft); color: var(--amber); }
+    .stage-approval { background: var(--teal-soft); color: var(--teal); }
+    .stage-lease { background: var(--green-soft); color: var(--forest); }
+    .stage-aftercare { background: var(--coral-soft); color: var(--coral); }
+    .stage-withdrawn { background: var(--gray-soft); color: var(--gray); }
 
     .admin-pipeline-empty {
       text-align: center;
       padding: 60px 20px;
       color: var(--text-muted);
       font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .pipeline-row { flex-wrap: wrap; }
+      .pipeline-row-dots { display: none; }
+      .manage-grid { grid-template-columns: 1fr; }
     }
 
     /* ── ADMIN FORM CONTAINER ── */
@@ -1886,8 +1852,7 @@
 
     <!-- PIPELINE TAB -->
     <div class="tab-content" id="tab-pipeline">
-      <div class="section-title">Pipeline — All Entries</div>
-      <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">Master view of every pipeline entry across all landlords and caseworkers. Advance stages, toggle checklist items, and add notes.</p>
+      <div class="section-title" id="pipelineTitle">Pipeline</div>
       <div id="pipelineLoading" style="text-align:center;padding:40px;color:var(--text-muted);"><span class="spinner"></span> Loading pipeline...</div>
       <div id="adminPipelineCards"></div>
       <div id="adminPipelineEmpty" class="admin-pipeline-empty" style="display:none;">No pipeline entries yet.</div>
@@ -1948,24 +1913,6 @@
       'Aftercare'
     ];
 
-    const ADMIN_STAGE_SHORT_LABELS = {
-      'Interview Requested': 'Int. Req.',
-      'Interview Scheduled': 'Int. Sched.',
-      'Selected': 'Selected',
-      'Confirming Apartment': 'Apt.',
-      'Confirming Rent': 'Rent',
-      'Confirming Documents': 'Docs',
-      'Submission': 'Submit',
-      'Inspection Scheduled': 'Insp. Sched.',
-      'Inspection Passed': 'Insp. Pass',
-      'Inspection Failed': 'Insp. Fail',
-      'Approval Pending': 'Approval',
-      'Approved': 'Approved',
-      'Lease Signing': 'Signing',
-      'Lease Signed': 'Signed',
-      'Aftercare': 'Aftercare'
-    };
-
     const ADMIN_CHECKLIST_FIELDS = [
       { key: 'apartment_confirmed', label: 'Apartment confirmed' },
       { key: 'rent_confirmed', label: 'Rent confirmed' },
@@ -1974,47 +1921,63 @@
       { key: 'submission_ready', label: 'Submission package ready' }
     ];
 
+    const SIMPLE_STAGES = [
+      { keys: ['Interview Requested', 'Interview Scheduled'], label: 'Interview', badgeClass: 'stage-interview' },
+      { keys: ['Selected', 'Confirming Apartment', 'Confirming Rent', 'Confirming Documents'], label: 'Verification', badgeClass: 'stage-verification' },
+      { keys: ['Submission'], label: 'Submitted', badgeClass: 'stage-submitted' },
+      { keys: ['Inspection Scheduled', 'Inspection Passed', 'Inspection Failed'], label: 'Inspection', badgeClass: 'stage-inspection' },
+      { keys: ['Approval Pending', 'Approved'], label: 'Approval', badgeClass: 'stage-approval' },
+      { keys: ['Lease Signing', 'Lease Signed', 'Aftercare'], label: 'Lease', badgeClass: 'stage-lease' }
+    ];
+
     function adminGetStageIndex(stage) {
       const idx = PIPELINE_STAGES.indexOf(stage);
       return idx >= 0 ? idx : 0;
     }
 
-    function adminGetStageBadgeClass(stage) {
-      switch (stage) {
-        case 'Interview Requested':
-        case 'Interview Scheduled': return 'stage-interview';
-        case 'Selected': return 'stage-selected';
-        case 'Confirming Apartment':
-        case 'Confirming Rent':
-        case 'Confirming Documents': return 'stage-confirming';
-        case 'Submission': return 'stage-submission';
-        case 'Inspection Scheduled': return 'stage-inspection';
-        case 'Inspection Passed': return 'stage-inspection-passed';
-        case 'Inspection Failed': return 'stage-inspection-failed';
-        case 'Approval Pending': return 'stage-approval';
-        case 'Approved': return 'stage-approved';
-        case 'Lease Signing': return 'stage-signing';
-        case 'Lease Signed': return 'stage-signed';
-        case 'Aftercare': return 'stage-aftercare';
-        default: return 'stage-selected';
+    function getSimpleStageInfo(detailedStage) {
+      for (let i = 0; i < SIMPLE_STAGES.length; i++) {
+        if (SIMPLE_STAGES[i].keys.includes(detailedStage)) {
+          return { index: i, label: SIMPLE_STAGES[i].label, badgeClass: SIMPLE_STAGES[i].badgeClass };
+        }
       }
+      return { index: 0, label: 'Interview', badgeClass: 'stage-interview' };
     }
 
-    function adminRenderStageProgress(currentStage) {
-      const currentIdx = adminGetStageIndex(currentStage);
-      let html = '<div class="admin-stage-progress">';
-      PIPELINE_STAGES.forEach((stage, i) => {
-        let cls = '';
-        if (i < currentIdx) cls = 'completed';
-        else if (i === currentIdx) cls = 'current';
-        html += `<div class="admin-stage-step ${cls}">`;
-        if (i < PIPELINE_STAGES.length - 1) html += `<div class="admin-stage-line"></div>`;
-        html += `<div class="admin-stage-dot"></div>`;
-        html += `<div class="admin-stage-label">${ADMIN_STAGE_SHORT_LABELS[stage] || stage}</div>`;
-        html += `</div>`;
-      });
+    function renderPipelineDots(detailedStage) {
+      const info = getSimpleStageInfo(detailedStage);
+      let html = '<div class="pipeline-row-dots">';
+      for (let i = 0; i < SIMPLE_STAGES.length; i++) {
+        if (i < info.index) html += '<span class="dot done"></span>';
+        else if (i === info.index) html += '<span class="dot current"></span>';
+        else html += '<span class="dot upcoming"></span>';
+      }
       html += '</div>';
       return html;
+    }
+
+    function getInitials(name) {
+      if (!name) return '??';
+      return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+    }
+
+    function toggleManagePanel(id) {
+      const panel = document.getElementById('manage-panel-' + id);
+      if (!panel) return;
+      const isOpen = panel.classList.contains('active');
+      // Close all panels first
+      document.querySelectorAll('.pipeline-manage-panel.active').forEach(p => p.classList.remove('active'));
+      if (!isOpen) panel.classList.add('active');
+    }
+
+    function adminMoveStagePrev(pipelineId, currentStage) {
+      const idx = adminGetStageIndex(currentStage);
+      if (idx > 0) adminChangeStage(pipelineId, PIPELINE_STAGES[idx - 1]);
+    }
+
+    function adminMoveStageNext(pipelineId, currentStage) {
+      const idx = adminGetStageIndex(currentStage);
+      if (idx < PIPELINE_STAGES.length - 1) adminChangeStage(pipelineId, PIPELINE_STAGES[idx + 1]);
     }
 
     async function adminToggleChecklist(pipelineId, field, checked) {
@@ -2380,6 +2343,7 @@
       const container = document.getElementById('adminPipelineCards');
       const emptyEl = document.getElementById('adminPipelineEmpty');
       const loadingEl = document.getElementById('pipelineLoading');
+      const titleEl = document.getElementById('pipelineTitle');
 
       if (loadingEl) loadingEl.style.display = 'none';
 
@@ -2391,88 +2355,136 @@
       if (data.length === 0) {
         container.innerHTML = '';
         emptyEl.style.display = 'block';
+        titleEl.textContent = 'Pipeline';
         return;
       }
 
       emptyEl.style.display = 'none';
+      titleEl.textContent = `Pipeline \u00B7 ${data.length} active`;
 
-      let html = '';
+      let html = '<div class="pipeline-list">';
+
       data.forEach(p => {
         const householdName = p.households ? p.households.head_of_household : 'Unknown';
-        const unitAddr = p.units ? p.units.building_address + (p.units.unit_number ? ', ' + p.units.unit_number : '') : 'Unknown';
-        const neighborhood = p.units ? p.units.neighborhood : '';
+        const unitLabel = p.units ? (p.units.unit_number || p.units.building_address || 'Unit') : 'Unknown';
+        const neighborhood = p.units ? (p.units.neighborhood || '') : '';
         const program = p.households ? p.households.voucher_program : (p.program || '--');
-        const bedrooms = p.households && p.households.authorized_bedrooms != null
-          ? (p.households.authorized_bedrooms === 0 ? 'Studio' : p.households.authorized_bedrooms + 'BR')
-          : '--';
-        const rent = p.units && p.units.monthly_rent ? '$' + Number(p.units.monthly_rent).toLocaleString() + '/mo' : '--';
+        const rent = p.units && p.units.monthly_rent ? '$' + Number(p.units.monthly_rent).toLocaleString() : '--';
         const stage = p.stage || 'Interview Requested';
-        const dateStr = p.created_at ? new Date(p.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '--';
+        const dateStr = p.created_at ? new Date(p.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '--';
         const landlordName = p.landlord ? p.landlord.full_name : '--';
         const caseworkerName = p.caseworker ? p.caseworker.full_name : '--';
+        const initials = getInitials(householdName);
+        const stageInfo = getSimpleStageInfo(stage);
+        const stageIdx = adminGetStageIndex(stage);
 
+        // -- Compact row --
+        html += `<div>`;
+        html += `<div class="pipeline-row" onclick="toggleManagePanel('${p.id}')">`;
+
+        // Avatar
+        html += `<div class="pipeline-row-avatar">${escapeHtml(initials)}</div>`;
+
+        // Main content
+        html += `<div class="pipeline-row-main">`;
+        html += `<div class="pipeline-row-top">`;
+        html += `<span class="pipeline-row-name">${escapeHtml(householdName)} &rarr; ${escapeHtml(unitLabel)}</span>`;
+        html += `<span class="pipeline-row-stage ${stageInfo.badgeClass}">${escapeHtml(stage)}</span>`;
+        html += `</div>`;
+        html += `<div class="pipeline-row-bottom">`;
+        html += `<span>${escapeHtml(program)}</span> &middot; <span>${rent}</span>`;
+        if (neighborhood) html += ` &middot; <span>${escapeHtml(neighborhood)}</span>`;
+        html += ` &middot; <span>Landlord: ${escapeHtml(landlordName)}</span>`;
+        html += ` &middot; <span>${dateStr}</span>`;
+        html += `</div>`;
+        html += `</div>`;
+
+        // Dots
+        html += renderPipelineDots(stage);
+
+        // Checklist icons
+        html += `<div class="pipeline-row-checks">`;
+        ADMIN_CHECKLIST_FIELDS.forEach(item => {
+          const done = p[item.key] === true;
+          html += `<span class="check-dot ${done ? 'done' : 'pending'}" title="${item.label}">${done ? '\u2713' : '\u25CB'}</span>`;
+        });
+        html += `</div>`;
+
+        // Manage button
+        html += `<button class="pipeline-row-manage" onclick="event.stopPropagation();toggleManagePanel('${p.id}')">Manage &rarr;</button>`;
+
+        html += `</div>`; // end pipeline-row
+
+        // -- Expanded management panel --
         const stageOptions = PIPELINE_STAGES.map(s =>
           `<option value="${escapeHtml(s)}" ${s === stage ? 'selected' : ''}>${escapeHtml(s)}</option>`
         ).join('');
 
-        html += `<div class="admin-pipeline-card">`;
+        html += `<div class="pipeline-manage-panel" id="manage-panel-${p.id}">`;
 
         // Header
-        html += `<div class="admin-pipeline-card-header">`;
-        html += `<div class="admin-pipeline-card-title">${escapeHtml(householdName)} &rarr; ${escapeHtml(unitAddr)}</div>`;
-        html += `<span class="admin-stage-badge ${adminGetStageBadgeClass(stage)}">${escapeHtml(stage)}</span>`;
-        html += `</div>`;
-        html += `<div class="admin-pipeline-card-sub">${escapeHtml(program)} &middot; ${bedrooms} &middot; ${rent}${neighborhood ? ' &middot; ' + escapeHtml(neighborhood) : ''}</div>`;
-
-        // People involved
-        html += `<div class="admin-pipeline-meta">`;
-        html += `<span><strong>Landlord:</strong> ${escapeHtml(landlordName)}</span>`;
-        html += `<span><strong>Caseworker:</strong> ${escapeHtml(caseworkerName)}</span>`;
-        html += `<span><strong>Added:</strong> ${dateStr}</span>`;
+        html += `<div class="manage-header">`;
+        html += `<div class="manage-title">Managing: ${escapeHtml(householdName)} &rarr; ${escapeHtml(unitLabel)}</div>`;
+        html += `<button class="manage-close" onclick="toggleManagePanel('${p.id}')">Close</button>`;
         html += `</div>`;
 
-        // Stage progress bar
-        html += adminRenderStageProgress(stage);
-
-        // Stage change control
-        html += `<div class="admin-pipeline-controls">`;
-        html += `<label style="font-size:12px;font-weight:600;color:var(--text-secondary);">Change stage:</label>`;
-        html += `<select class="admin-stage-select" onchange="adminChangeStage('${p.id}', this.value)">${stageOptions}</select>`;
+        // Stage row
+        html += `<div class="manage-stage-row">`;
+        html += `<span style="font-size:12px;font-weight:600;color:var(--text-secondary);">Stage:</span>`;
+        html += `<select class="manage-stage-select" onchange="adminChangeStage('${p.id}', this.value)">${stageOptions}</select>`;
+        html += `<button class="manage-stage-btn" ${stageIdx === 0 ? 'disabled' : ''} onclick="adminMoveStagePrev('${p.id}','${escapeHtml(stage)}')">&larr; Previous</button>`;
+        html += `<button class="manage-stage-btn" ${stageIdx >= PIPELINE_STAGES.length - 1 ? 'disabled' : ''} onclick="adminMoveStageNext('${p.id}','${escapeHtml(stage)}')">Next &rarr;</button>`;
         html += `</div>`;
 
-        // Closing checklist
-        html += `<div class="admin-checklist">`;
-        html += `<div class="admin-checklist-title">Closing Checklist</div>`;
+        // Grid: checklist + people
+        html += `<div class="manage-grid">`;
+
+        // Checklist
+        html += `<div>`;
+        html += `<div class="manage-section-title">Checklist</div>`;
         ADMIN_CHECKLIST_FIELDS.forEach(item => {
           const isChecked = p[item.key] === true;
-          html += `<div class="admin-checklist-item ${isChecked ? 'checked' : ''}" onclick="this.classList.toggle('checked');adminToggleChecklist('${p.id}','${item.key}',this.classList.contains('checked'))">`;
-          html += `<span class="check-icon">${isChecked ? '\u2713' : ''}</span>`;
+          html += `<div class="manage-checklist-item ${isChecked ? 'checked' : ''}" onclick="this.classList.toggle('checked');adminToggleChecklist('${p.id}','${item.key}',this.classList.contains('checked'))">`;
+          html += `<span class="manage-check-icon">${isChecked ? '\u2713' : ''}</span>`;
           html += `<span>${item.label}</span>`;
           html += `</div>`;
         });
         html += `</div>`;
 
-        // Notes form
-        html += `<div class="admin-notes-form">`;
-        html += `<textarea id="admin-note-${p.id}" placeholder="Add a note..."></textarea>`;
-        html += `<button class="admin-btn-note" onclick="adminAddNote('${p.id}')">Add Note</button>`;
+        // People
+        html += `<div>`;
+        html += `<div class="manage-section-title">People</div>`;
+        html += `<div style="font-size:13px;color:var(--text-secondary);padding:4px 0;"><strong style="color:var(--text);">Landlord:</strong> ${escapeHtml(landlordName)}</div>`;
+        html += `<div style="font-size:13px;color:var(--text-secondary);padding:4px 0;"><strong style="color:var(--text);">Caseworker:</strong> ${escapeHtml(caseworkerName)}</div>`;
+        html += `<div style="font-size:13px;color:var(--text-secondary);padding:4px 0;"><strong style="color:var(--text);">Program:</strong> ${escapeHtml(program)}</div>`;
         html += `</div>`;
 
-        // Activity timeline
-        html += `<div class="admin-activity">`;
-        html += `<div class="admin-activity-title">Activity</div>`;
+        html += `</div>`; // end manage-grid
+
+        // Notes
+        html += `<div class="manage-notes">`;
+        html += `<div class="manage-section-title">Notes</div>`;
+        html += `<textarea id="admin-note-${p.id}" placeholder="Add a note..."></textarea>`;
+        html += `<button class="manage-note-btn" onclick="adminAddNote('${p.id}')">Add Note</button>`;
+        html += `</div>`;
+
+        // Activity
+        html += `<div class="manage-activity">`;
+        html += `<div class="manage-section-title">Activity</div>`;
         if (p.notes) {
           const noteLines = p.notes.split('\n').filter(l => l.trim());
           noteLines.forEach(line => {
-            html += `<div class="admin-activity-item"><span>${escapeHtml(line)}</span></div>`;
+            html += `<div class="manage-activity-item">&bull; ${escapeHtml(line)}</div>`;
           });
         }
-        html += `<div class="admin-activity-item"><span class="activity-date">${dateStr}</span> <span>Added to pipeline</span></div>`;
+        html += `<div class="manage-activity-item">&bull; ${dateStr} &mdash; Added to pipeline</div>`;
         html += `</div>`;
 
-        html += `</div>`;
+        html += `</div>`; // end manage-panel
+        html += `</div>`; // end wrapper div
       });
 
+      html += '</div>'; // end pipeline-list
       container.innerHTML = html;
     }
 
